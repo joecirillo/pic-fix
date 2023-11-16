@@ -13,6 +13,11 @@
 		D80D34622B068F6800D385F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D80D34602B068F6800D385F4 /* Main.storyboard */; };
 		D80D34642B068F6C00D385F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D80D34632B068F6C00D385F4 /* Assets.xcassets */; };
 		D80D34672B068F6C00D385F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D80D34652B068F6C00D385F4 /* LaunchScreen.storyboard */; };
+		D80D34702B0690AA00D385F4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D80D346F2B0690AA00D385F4 /* FirebaseAnalytics */; };
+		D80D34722B0690AA00D385F4 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = D80D34712B0690AA00D385F4 /* FirebaseAnalyticsOnDeviceConversion */; };
+		D80D34742B0690AA00D385F4 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D80D34732B0690AA00D385F4 /* FirebaseAnalyticsSwift */; };
+		D80D34762B0690AA00D385F4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = D80D34752B0690AA00D385F4 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		D80D34782B0690AA00D385F4 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = D80D34772B0690AA00D385F4 /* FirebaseAppCheck */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +36,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D80D34742B0690AA00D385F4 /* FirebaseAnalyticsSwift in Frameworks */,
+				D80D34702B0690AA00D385F4 /* FirebaseAnalytics in Frameworks */,
+				D80D34722B0690AA00D385F4 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				D80D34782B0690AA00D385F4 /* FirebaseAppCheck in Frameworks */,
+				D80D34762B0690AA00D385F4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +93,13 @@
 			dependencies = (
 			);
 			name = PicFix;
+			packageProductDependencies = (
+				D80D346F2B0690AA00D385F4 /* FirebaseAnalytics */,
+				D80D34712B0690AA00D385F4 /* FirebaseAnalyticsOnDeviceConversion */,
+				D80D34732B0690AA00D385F4 /* FirebaseAnalyticsSwift */,
+				D80D34752B0690AA00D385F4 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				D80D34772B0690AA00D385F4 /* FirebaseAppCheck */,
+			);
 			productName = PicFix;
 			productReference = D80D34572B068F6800D385F4 /* PicFix.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +128,9 @@
 				Base,
 			);
 			mainGroup = D80D344E2B068F6800D385F4;
+			packageReferences = (
+				D80D346E2B0690AA00D385F4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = D80D34582B068F6800D385F4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -300,6 +320,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -328,6 +349,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -363,6 +385,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D80D346E2B0690AA00D385F4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.18.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D80D346F2B0690AA00D385F4 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D80D346E2B0690AA00D385F4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		D80D34712B0690AA00D385F4 /* FirebaseAnalyticsOnDeviceConversion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D80D346E2B0690AA00D385F4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsOnDeviceConversion;
+		};
+		D80D34732B0690AA00D385F4 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D80D346E2B0690AA00D385F4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		D80D34752B0690AA00D385F4 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D80D346E2B0690AA00D385F4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		D80D34772B0690AA00D385F4 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D80D346E2B0690AA00D385F4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D80D344F2B068F6800D385F4 /* Project object */;
 }
