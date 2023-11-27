@@ -12,6 +12,7 @@ class MainScreenView: UIView {
     var passwordTextField = UITextField()
     var logInButton = UIButton()
     var signUpButton = UIButton()
+    var logoImage = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,6 +22,7 @@ class MainScreenView: UIView {
         setupPassword()
         setupLogInButton()
         setupSignUpButton()
+        setupLogoImage()
         
         initConstraints()
     }
@@ -69,8 +71,23 @@ class MainScreenView: UIView {
         self.addSubview(signUpButton)
     }
     
+    func setupLogoImage(){
+        logoImage = UIImageView()
+        logoImage.image = UIImage(named: "AppIcon")
+        logoImage.contentMode = .scaleAspectFill
+        logoImage.clipsToBounds = true
+        logoImage.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(logoImage)
+    }
+    
     func initConstraints(){
         NSLayoutConstraint.activate([
+            
+            logoImage.heightAnchor.constraint(equalToConstant: 250),
+            logoImage.widthAnchor.constraint(equalToConstant: 250),
+            logoImage.bottomAnchor.constraint(equalTo: userNameTextField.topAnchor, constant: -64),
+            logoImage.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            
             
             userNameTextField.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             userNameTextField.bottomAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: -16),
