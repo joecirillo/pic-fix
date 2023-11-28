@@ -27,6 +27,7 @@ extension ViewController {
         //MARK: authenticating the user...
         Auth.auth().signIn(withEmail: email, password: password, completion: {(result, error) in
             if error == nil{
+                print("successfully logged in")
                 //MARK: user authenticated...
                 //MARK: can you hide the progress indicator here?
                 self.hideActivityIndicator()
