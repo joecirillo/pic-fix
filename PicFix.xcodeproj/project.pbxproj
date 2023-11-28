@@ -57,6 +57,8 @@
 		D84825972B0BCADF004DB2C3 /* CreateAccountFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84825962B0BCADF004DB2C3 /* CreateAccountFirebaseManager.swift */; };
 		D84825992B0BCB09004DB2C3 /* ProgressSpinnerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84825982B0BCB09004DB2C3 /* ProgressSpinnerDelegate.swift */; };
 		D848259B2B0BCB34004DB2C3 /* ProgressSpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D848259A2B0BCB34004DB2C3 /* ProgressSpinnerViewController.swift */; };
+		D8D111B72B151296001B2FD9 /* ProfileScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D111B62B151296001B2FD9 /* ProfileScreenView.swift */; };
+		D8D111B92B1512AD001B2FD9 /* ProfileScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D111B82B1512AD001B2FD9 /* ProfileScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +82,8 @@
 		D84825962B0BCADF004DB2C3 /* CreateAccountFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountFirebaseManager.swift; sourceTree = "<group>"; };
 		D84825982B0BCB09004DB2C3 /* ProgressSpinnerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSpinnerDelegate.swift; sourceTree = "<group>"; };
 		D848259A2B0BCB34004DB2C3 /* ProgressSpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSpinnerViewController.swift; sourceTree = "<group>"; };
+		D8D111B62B151296001B2FD9 /* ProfileScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenView.swift; sourceTree = "<group>"; };
+		D8D111B82B1512AD001B2FD9 /* ProfileScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,7 @@
 				D80D345A2B068F6800D385F4 /* AppDelegate.swift */,
 				D80D345C2B068F6800D385F4 /* SceneDelegate.swift */,
 				D848259D2B0BCBAD004DB2C3 /* Main Screen */,
+				D8D111BA2B1512B2001B2FD9 /* Profile Screen */,
 				D848259E2B0BCBC1004DB2C3 /* Create Account Screen */,
 				832071FF2B15A69F006C3499 /* Photo Swipe Screen */,
 				D848259C2B0BCB76004DB2C3 /* Progress Indicator */,
@@ -205,6 +210,15 @@
 				D84825922B0BC8F7004DB2C3 /* CreateAccountScreenView.swift */,
 			);
 			path = "Create Account Screen";
+			sourceTree = "<group>";
+		};
+		D8D111BA2B1512B2001B2FD9 /* Profile Screen */ = {
+			isa = PBXGroup;
+			children = (
+				D8D111B82B1512AD001B2FD9 /* ProfileScreenViewController.swift */,
+				D8D111B62B151296001B2FD9 /* ProfileScreenView.swift */,
+			);
+			path = "Profile Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8D111B72B151296001B2FD9 /* ProfileScreenView.swift in Sources */,
 				D84825592B0BC5F1004DB2C3 /* CreateAccountViewController.swift in Sources */,
 				D80D345F2B068F6800D385F4 /* ViewController.swift in Sources */,
 				D84825972B0BCADF004DB2C3 /* CreateAccountFirebaseManager.swift in Sources */,
@@ -324,6 +339,7 @@
 				D80D345B2B068F6800D385F4 /* AppDelegate.swift in Sources */,
 				832072012B15A6D0006C3499 /* PhotoSwipeViewController.swift in Sources */,
 				D80D345D2B068F6800D385F4 /* SceneDelegate.swift in Sources */,
+				D8D111B92B1512AD001B2FD9 /* ProfileScreenViewController.swift in Sources */,
 				D84825952B0BCAB6004DB2C3 /* CreateAccountProgressIndicator.swift in Sources */,
 				832072032B15A755006C3499 /* PhotoSwipeView.swift in Sources */,
 				832071FE2B15725E006C3499 /* AuthManager.swift in Sources */,
