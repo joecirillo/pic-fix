@@ -30,6 +30,8 @@ extension ViewController {
                 //MARK: user authenticated...
                 //MARK: can you hide the progress indicator here?
                 self.hideActivityIndicator()
+                let photoSwipeViewController = PhotoSwipeViewController()
+                self.navigationController?.pushViewController(photoSwipeViewController, animated: true)
             }else{
                 //MARK: alert that no user found or password wrong...
             }
