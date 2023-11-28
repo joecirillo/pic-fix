@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
-        title = "Messenger"
+        title = "PicFix"
         
         navigationController?.navigationBar.prefersLargeTitles = true
     }
