@@ -9,7 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     let mainScreenView = MainScreenView()
-    
+    let childProgressView = ProgressSpinnerViewController()
+
     override func loadView(){
         view = mainScreenView
         
@@ -26,32 +27,6 @@ class ViewController: UIViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = true
     }
-    
-    
-    @objc func onLogInButtonTapped(){
-        if let user = mainScreenView.userNameTextField.text,
-           let password = mainScreenView.passwordTextField.text{
-            if user.isEmpty {
-                showEmptyErrorAlert()
-            } else if password.isEmpty {
-                showEmptyErrorAlert()
-            } else {
-                
-            }
-        }
-    }
-    
-    @objc func onSignUpButtonTapped(){
-        let createAccountViewController = CreateAccountViewController()
-        self.navigationController?.pushViewController(createAccountViewController, animated: true)
-    }
-    
-    func showEmptyErrorAlert(){
-        let alert = UIAlertController(title: "Error", message: "The inputs cannot be empty!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        self.present(alert, animated: true)
-    }
-    
     
     override var shouldAutorotate: Bool {
         return false

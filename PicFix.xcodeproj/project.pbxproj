@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		832071FE2B15725E006C3499 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832071FD2B15725E006C3499 /* AuthManager.swift */; };
+		832072012B15A6D0006C3499 /* PhotoSwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832072002B15A6D0006C3499 /* PhotoSwipeViewController.swift */; };
+		832072032B15A755006C3499 /* PhotoSwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832072022B15A755006C3499 /* PhotoSwipeView.swift */; };
+		832072052B15A917006C3499 /* LoginProgressIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832072042B15A917006C3499 /* LoginProgressIndicatorManager.swift */; };
 		D80D345B2B068F6800D385F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80D345A2B068F6800D385F4 /* AppDelegate.swift */; };
 		D80D345D2B068F6800D385F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80D345C2B068F6800D385F4 /* SceneDelegate.swift */; };
 		D80D345F2B068F6800D385F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80D345E2B068F6800D385F4 /* ViewController.swift */; };
@@ -56,6 +60,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		832071FD2B15725E006C3499 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		832072002B15A6D0006C3499 /* PhotoSwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSwipeViewController.swift; sourceTree = "<group>"; };
+		832072022B15A755006C3499 /* PhotoSwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSwipeView.swift; sourceTree = "<group>"; };
+		832072042B15A917006C3499 /* LoginProgressIndicatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProgressIndicatorManager.swift; sourceTree = "<group>"; };
 		D80D34572B068F6800D385F4 /* PicFix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicFix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D80D345A2B068F6800D385F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D80D345C2B068F6800D385F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +125,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		832071FC2B15721E006C3499 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D80D347B2B06941100D385F4 /* MainScreenView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		832071FF2B15A69F006C3499 /* Photo Swipe Screen */ = {
+			isa = PBXGroup;
+			children = (
+				832072002B15A6D0006C3499 /* PhotoSwipeViewController.swift */,
+				832072022B15A755006C3499 /* PhotoSwipeView.swift */,
+			);
+			path = "Photo Swipe Screen";
+			sourceTree = "<group>";
+		};
 		D80D344E2B068F6800D385F4 = {
 			isa = PBXGroup;
 			children = (
@@ -138,9 +163,10 @@
 			children = (
 				D80D345A2B068F6800D385F4 /* AppDelegate.swift */,
 				D80D345C2B068F6800D385F4 /* SceneDelegate.swift */,
-				D848259C2B0BCB76004DB2C3 /* Progress Indicator */,
 				D848259D2B0BCBAD004DB2C3 /* Main Screen */,
 				D848259E2B0BCBC1004DB2C3 /* Create Account Screen */,
+				832071FF2B15A69F006C3499 /* Photo Swipe Screen */,
+				D848259C2B0BCB76004DB2C3 /* Progress Indicator */,
 				D80D34602B068F6800D385F4 /* Main.storyboard */,
 				D80D34632B068F6C00D385F4 /* Assets.xcassets */,
 				D80D34652B068F6C00D385F4 /* LaunchScreen.storyboard */,
@@ -162,8 +188,10 @@
 		D848259D2B0BCBAD004DB2C3 /* Main Screen */ = {
 			isa = PBXGroup;
 			children = (
+				832071FC2B15721E006C3499 /* Views */,
 				D80D345E2B068F6800D385F4 /* ViewController.swift */,
-				D80D347B2B06941100D385F4 /* MainScreenView.swift */,
+				832071FD2B15725E006C3499 /* AuthManager.swift */,
+				832072042B15A917006C3499 /* LoginProgressIndicatorManager.swift */,
 			);
 			path = "Main Screen";
 			sourceTree = "<group>";
@@ -294,10 +322,14 @@
 				D848259B2B0BCB34004DB2C3 /* ProgressSpinnerViewController.swift in Sources */,
 				D84825932B0BC8F7004DB2C3 /* CreateAccountScreenView.swift in Sources */,
 				D80D345B2B068F6800D385F4 /* AppDelegate.swift in Sources */,
+				832072012B15A6D0006C3499 /* PhotoSwipeViewController.swift in Sources */,
 				D80D345D2B068F6800D385F4 /* SceneDelegate.swift in Sources */,
 				D84825952B0BCAB6004DB2C3 /* CreateAccountProgressIndicator.swift in Sources */,
+				832072032B15A755006C3499 /* PhotoSwipeView.swift in Sources */,
+				832071FE2B15725E006C3499 /* AuthManager.swift in Sources */,
 				D84825992B0BCB09004DB2C3 /* ProgressSpinnerDelegate.swift in Sources */,
 				D80D347C2B06941100D385F4 /* MainScreenView.swift in Sources */,
+				832072052B15A917006C3499 /* LoginProgressIndicatorManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

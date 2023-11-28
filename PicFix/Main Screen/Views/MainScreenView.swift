@@ -8,7 +8,7 @@
 import UIKit
 
 class MainScreenView: UIView {
-    var userNameTextField = UITextField()
+    var emailTextField = UITextField()
     var passwordTextField = UITextField()
     var logInButton = UIButton()
     var signUpButton = UIButton()
@@ -18,7 +18,7 @@ class MainScreenView: UIView {
         super.init(frame: frame)
         self.backgroundColor = .white
         
-        setupUserName()
+        setupEmail()
         setupPassword()
         setupLogInButton()
         setupSignUpButton()
@@ -28,15 +28,15 @@ class MainScreenView: UIView {
     }
     
     
-    func setupUserName(){
-        userNameTextField = UITextField()
-        userNameTextField.placeholder = "Name"
-        userNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        userNameTextField.borderStyle = .roundedRect
-        userNameTextField.layer.borderColor = UIColor.gray.cgColor
-        userNameTextField.layer.cornerRadius = 10.0
-        userNameTextField.layer.borderWidth = 1.0
-        self.addSubview(userNameTextField)
+    func setupEmail(){
+        emailTextField = UITextField()
+        emailTextField.placeholder = "Name"
+        emailTextField.translatesAutoresizingMaskIntoConstraints = false
+        emailTextField.borderStyle = .roundedRect
+        emailTextField.layer.borderColor = UIColor.gray.cgColor
+        emailTextField.layer.cornerRadius = 10.0
+        emailTextField.layer.borderWidth = 1.0
+        self.addSubview(emailTextField)
     }
     func setupPassword(){
         passwordTextField = UITextField()
@@ -85,14 +85,14 @@ class MainScreenView: UIView {
             
             logoImage.heightAnchor.constraint(equalToConstant: 250),
             logoImage.widthAnchor.constraint(equalToConstant: 250),
-            logoImage.bottomAnchor.constraint(equalTo: userNameTextField.topAnchor, constant: -64),
+            logoImage.bottomAnchor.constraint(equalTo: emailTextField.topAnchor, constant: -64),
             logoImage.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             
             
-            userNameTextField.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-            userNameTextField.bottomAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: -16),
-            userNameTextField.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 50),
-            userNameTextField.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -50),
+            emailTextField.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            emailTextField.bottomAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: -16),
+            emailTextField.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 50),
+            emailTextField.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -50),
             
             passwordTextField.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             passwordTextField.bottomAnchor.constraint(equalTo: logInButton.topAnchor, constant: -16),
