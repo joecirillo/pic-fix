@@ -1,17 +1,16 @@
 //
-//  ProfileScreenView.swift
+//  EditProfileView.swift
 //  PicFix
 //
-//  Created by Joe Cirillo on 11/27/23.
+//  Created by Joe Cirillo on 11/28/23.
 //
 
 import UIKit
 
-class ProfileScreenView: UIView {
-
+class EditProfileView: UIView {
 
     var contactPhoto: UIImageView!
-    var name: UILabel!
+    var name: UITextField!
     var email: UILabel!
     var photosDeletedLabel: UILabel!
     var megabytesSavedLabel: UILabel!
@@ -40,7 +39,7 @@ class ProfileScreenView: UIView {
     }
     
     func setupName(){
-        name = UILabel()
+        name = UITextField()
         name.font = UIFont.boldSystemFont(ofSize: 30)
         name.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(name)
@@ -94,5 +93,4 @@ class ProfileScreenView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
