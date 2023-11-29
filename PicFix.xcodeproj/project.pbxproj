@@ -9,8 +9,13 @@
 /* Begin PBXBuildFile section */
 		832071FE2B15725E006C3499 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832071FD2B15725E006C3499 /* AuthManager.swift */; };
 		832072012B15A6D0006C3499 /* PhotoSwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832072002B15A6D0006C3499 /* PhotoSwipeViewController.swift */; };
-		832072032B15A755006C3499 /* PhotoSwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832072022B15A755006C3499 /* PhotoSwipeView.swift */; };
 		832072052B15A917006C3499 /* LoginProgressIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832072042B15A917006C3499 /* LoginProgressIndicatorManager.swift */; };
+		832246EC2B1709000063778D /* PhotoSwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832246EB2B1709000063778D /* PhotoSwipeView.swift */; };
+		832246F02B170A850063778D /* SwipeContainerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832246EF2B170A850063778D /* SwipeContainerDelegate.swift */; };
+		832246F22B170B9E0063778D /* SwipeContainerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832246F12B170B9E0063778D /* SwipeContainerManager.swift */; };
+		832246F52B170D980063778D /* StackContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832246F42B170D980063778D /* StackContainerView.swift */; };
+		832246F72B170DB80063778D /* SwipeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832246F62B170DB80063778D /* SwipeCardView.swift */; };
+		832246FA2B170F020063778D /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832246F92B170F020063778D /* Cards.swift */; };
 		D80D345B2B068F6800D385F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80D345A2B068F6800D385F4 /* AppDelegate.swift */; };
 		D80D345D2B068F6800D385F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80D345C2B068F6800D385F4 /* SceneDelegate.swift */; };
 		D80D345F2B068F6800D385F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80D345E2B068F6800D385F4 /* ViewController.swift */; };
@@ -66,8 +71,13 @@
 /* Begin PBXFileReference section */
 		832071FD2B15725E006C3499 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		832072002B15A6D0006C3499 /* PhotoSwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSwipeViewController.swift; sourceTree = "<group>"; };
-		832072022B15A755006C3499 /* PhotoSwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSwipeView.swift; sourceTree = "<group>"; };
 		832072042B15A917006C3499 /* LoginProgressIndicatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProgressIndicatorManager.swift; sourceTree = "<group>"; };
+		832246EB2B1709000063778D /* PhotoSwipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSwipeView.swift; sourceTree = "<group>"; };
+		832246EF2B170A850063778D /* SwipeContainerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeContainerDelegate.swift; sourceTree = "<group>"; };
+		832246F12B170B9E0063778D /* SwipeContainerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeContainerManager.swift; sourceTree = "<group>"; };
+		832246F42B170D980063778D /* StackContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackContainerView.swift; sourceTree = "<group>"; };
+		832246F62B170DB80063778D /* SwipeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardView.swift; sourceTree = "<group>"; };
+		832246F92B170F020063778D /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		D80D34572B068F6800D385F4 /* PicFix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicFix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D80D345A2B068F6800D385F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D80D345C2B068F6800D385F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +143,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1FDC36288DF113B913765441 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		832071FC2B15721E006C3499 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,10 +161,37 @@
 		832071FF2B15A69F006C3499 /* Photo Swipe Screen */ = {
 			isa = PBXGroup;
 			children = (
+				832246ED2B1709220063778D /* Views */,
 				832072002B15A6D0006C3499 /* PhotoSwipeViewController.swift */,
-				832072022B15A755006C3499 /* PhotoSwipeView.swift */,
 			);
 			path = "Photo Swipe Screen";
+			sourceTree = "<group>";
+		};
+		832246ED2B1709220063778D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				832246EB2B1709000063778D /* PhotoSwipeView.swift */,
+				832246F42B170D980063778D /* StackContainerView.swift */,
+				832246F62B170DB80063778D /* SwipeCardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		832246EE2B170A5A0063778D /* Stack Container */ = {
+			isa = PBXGroup;
+			children = (
+				832246EF2B170A850063778D /* SwipeContainerDelegate.swift */,
+				832246F12B170B9E0063778D /* SwipeContainerManager.swift */,
+			);
+			path = "Stack Container";
+			sourceTree = "<group>";
+		};
+		832246F82B170EDB0063778D /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				832246F92B170F020063778D /* Cards.swift */,
+			);
+			path = "Data Models";
 			sourceTree = "<group>";
 		};
 		D80D344E2B068F6800D385F4 = {
@@ -155,6 +199,7 @@
 			children = (
 				D80D34592B068F6800D385F4 /* PicFix */,
 				D80D34582B068F6800D385F4 /* Products */,
+				1FDC36288DF113B913765441 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -176,7 +221,9 @@
 				D85970B72B16AD90005CFD38 /* Edit Profile Screen */,
 				D848259E2B0BCBC1004DB2C3 /* Create Account Screen */,
 				832071FF2B15A69F006C3499 /* Photo Swipe Screen */,
+				832246EE2B170A5A0063778D /* Stack Container */,
 				D848259C2B0BCB76004DB2C3 /* Progress Indicator */,
+				832246F82B170EDB0063778D /* Data Models */,
 				D80D34602B068F6800D385F4 /* Main.storyboard */,
 				D80D34632B068F6C00D385F4 /* Assets.xcassets */,
 				D80D34652B068F6C00D385F4 /* LaunchScreen.storyboard */,
@@ -349,17 +396,22 @@
 				D84825592B0BC5F1004DB2C3 /* CreateAccountViewController.swift in Sources */,
 				D80D345F2B068F6800D385F4 /* ViewController.swift in Sources */,
 				D84825972B0BCADF004DB2C3 /* CreateAccountFirebaseManager.swift in Sources */,
+				832246F52B170D980063778D /* StackContainerView.swift in Sources */,
 				D848259B2B0BCB34004DB2C3 /* ProgressSpinnerViewController.swift in Sources */,
 				D84825932B0BC8F7004DB2C3 /* CreateAccountScreenView.swift in Sources */,
 				D80D345B2B068F6800D385F4 /* AppDelegate.swift in Sources */,
 				832072012B15A6D0006C3499 /* PhotoSwipeViewController.swift in Sources */,
 				D80D345D2B068F6800D385F4 /* SceneDelegate.swift in Sources */,
+				832246EC2B1709000063778D /* PhotoSwipeView.swift in Sources */,
 				D8D111B92B1512AD001B2FD9 /* ProfileViewController.swift in Sources */,
+				832246F72B170DB80063778D /* SwipeCardView.swift in Sources */,
 				D85970B42B16ACBE005CFD38 /* EditProfileViewController.swift in Sources */,
 				D84825952B0BCAB6004DB2C3 /* CreateAccountProgressIndicator.swift in Sources */,
-				832072032B15A755006C3499 /* PhotoSwipeView.swift in Sources */,
 				832071FE2B15725E006C3499 /* AuthManager.swift in Sources */,
+				832246FA2B170F020063778D /* Cards.swift in Sources */,
 				D84825992B0BCB09004DB2C3 /* ProgressSpinnerDelegate.swift in Sources */,
+				832246F22B170B9E0063778D /* SwipeContainerManager.swift in Sources */,
+				832246F02B170A850063778D /* SwipeContainerDelegate.swift in Sources */,
 				D80D347C2B06941100D385F4 /* MainScreenView.swift in Sources */,
 				832072052B15A917006C3499 /* LoginProgressIndicatorManager.swift in Sources */,
 			);
