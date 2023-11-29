@@ -22,7 +22,7 @@ class PhotoSwipeViewController: UIViewController {
         if let originalImage = UIImage(systemName: "person.crop.circle") {
             // Resize the image to 50 by 50 pixels
             let coloredImage = originalImage.withTintColor(.black, renderingMode: .alwaysOriginal)
-            
+             
             // Create a UIBarButtonItem with the resized and colored image
             let customBarButtonItem = UIBarButtonItem(
                 image: coloredImage,
