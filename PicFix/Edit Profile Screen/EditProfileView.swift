@@ -24,6 +24,8 @@ class EditProfileView: UIView {
         setupContactPhoto()
         setupName()
         setupEmail()
+        setupPhotosDeletedLabel()
+        setupMegabytesSavedLabel()
         
         initConstraints()
     }
@@ -40,6 +42,7 @@ class EditProfileView: UIView {
     
     func setupName(){
         name = UITextField()
+        name.text = "Hi"
         name.font = UIFont.boldSystemFont(ofSize: 30)
         name.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(name)
@@ -47,6 +50,7 @@ class EditProfileView: UIView {
     
     func setupEmail(){
         email = UILabel()
+        email.text = "Hi"
         email.font = email.font.withSize(20)
         email.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(email)
@@ -54,6 +58,7 @@ class EditProfileView: UIView {
     
     func setupPhotosDeletedLabel(){
         photosDeletedLabel = UILabel()
+        photosDeletedLabel.text = "Hi"
         photosDeletedLabel.font = UIFont.boldSystemFont(ofSize: 20)
         photosDeletedLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(photosDeletedLabel)
@@ -61,6 +66,7 @@ class EditProfileView: UIView {
     
     func setupMegabytesSavedLabel(){
         megabytesSavedLabel = UILabel()
+        megabytesSavedLabel.text = "Hi"
         megabytesSavedLabel.font = UIFont.boldSystemFont(ofSize: 20)
         megabytesSavedLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(megabytesSavedLabel)

@@ -25,6 +25,8 @@ class ProfileView: UIView {
         setupContactPhoto()
         setupName()
         setupEmail()
+        setupPhotosDeletedLabel()
+        setupMegabytesSavedLabel()
         
         initConstraints()
     }
@@ -41,6 +43,7 @@ class ProfileView: UIView {
     
     func setupName(){
         name = UILabel()
+        name.text = "Hi"
         name.font = UIFont.boldSystemFont(ofSize: 30)
         name.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(name)
@@ -48,6 +51,7 @@ class ProfileView: UIView {
     
     func setupEmail(){
         email = UILabel()
+        email.text = "Hi"
         email.font = email.font.withSize(20)
         email.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(email)
@@ -55,6 +59,7 @@ class ProfileView: UIView {
     
     func setupPhotosDeletedLabel(){
         photosDeletedLabel = UILabel()
+        photosDeletedLabel.text = "Photos deleted: "
         photosDeletedLabel.font = UIFont.boldSystemFont(ofSize: 20)
         photosDeletedLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(photosDeletedLabel)
@@ -62,6 +67,7 @@ class ProfileView: UIView {
     
     func setupMegabytesSavedLabel(){
         megabytesSavedLabel = UILabel()
+        megabytesSavedLabel.text = "Megabytes saved: "
         megabytesSavedLabel.font = UIFont.boldSystemFont(ofSize: 20)
         megabytesSavedLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(megabytesSavedLabel)
@@ -73,7 +79,7 @@ class ProfileView: UIView {
         NSLayoutConstraint.activate([
             contactPhoto.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 8),
             contactPhoto.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-            contactPhoto.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, constant: -120),
+            contactPhoto.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, constant: -320),
             contactPhoto.heightAnchor.constraint(equalTo: contactPhoto.widthAnchor),
             
             name.topAnchor.constraint(equalTo: contactPhoto.bottomAnchor, constant: 32),
