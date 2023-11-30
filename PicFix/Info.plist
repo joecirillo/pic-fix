@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSCameraUsageDescription</key>
-	<string>The camera is required to set a profile photo.</string>
-	<key>CFBundleIdentifier</key>
-	<string></string>
+	<string>Please grant camera permissions to upload profile photo</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photo library to display random images</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

@@ -8,30 +8,19 @@
 import UIKit
 
 class PhotoSwipeView: UIView {
-    var photoImage = UIImageView()
-    var albumsButton = UIButton()
-    var recentlyDeletedButton = UIButton()
+    var albumsButton:UIButton!
+    var recentlyDeletedButton:UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
-        
-        setupPhotoImage()
+                
         setupAlbumsButton()
         setupRecentlyDeletedButton()
-        
+
         initConstraints()
     }
-    
-    func setupPhotoImage(){
-        photoImage = UIImageView()
-        photoImage.image = UIImage(named: "AppIcon")
-        photoImage.contentMode = .scaleAspectFill
-        photoImage.clipsToBounds = true
-        photoImage.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(photoImage)
-    }
-     
+
     func setupAlbumsButton(){
         albumsButton = UIButton()
         albumsButton.setTitle("Albums", for: .normal)
@@ -56,19 +45,13 @@ class PhotoSwipeView: UIView {
     
     func initConstraints(){
         NSLayoutConstraint.activate([
-            
-            photoImage.heightAnchor.constraint(equalToConstant: 250),
-            photoImage.widthAnchor.constraint(equalToConstant: 250),
-            photoImage.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 32),
-            photoImage.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-            
             albumsButton.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-            albumsButton.topAnchor.constraint(equalTo: photoImage.bottomAnchor, constant: -16),
+            albumsButton.bottomAnchor.constraint(equalTo: recentlyDeletedButton.topAnchor, constant: -16),
             albumsButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 50),
             albumsButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -50),
             
             recentlyDeletedButton.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-            recentlyDeletedButton.topAnchor.constraint(equalTo: albumsButton.bottomAnchor, constant: -32),
+            recentlyDeletedButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             recentlyDeletedButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 50),
             recentlyDeletedButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -50)
             
