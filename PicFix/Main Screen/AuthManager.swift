@@ -22,18 +22,18 @@ extension ViewController {
     }
     
     func signInToFirebase(email: String, password: String){
-        //MARK: can you display progress indicator here?
         showActivityIndicator()
         //MARK: authenticating the user...
         Auth.auth().signIn(withEmail: email, password: password, completion: {(result, error) in
             if error == nil{
                 print("successfully logged in")
-                //MARK: user authenticated...
-                //MARK: can you hide the progress indicator here?
                 self.hideActivityIndicator()
                 let photoSwipeViewController = PhotoSwipeViewController()
+                //MARK: duplicated push
                 self.navigationController?.pushViewController(photoSwipeViewController, animated: true)
             }else{
+                self.hideActivityIndicator()
+                print(error)
                 //MARK: alert that no user found or password wrong...
             }
             
