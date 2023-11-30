@@ -7,11 +7,9 @@
 import UIKit
 
 struct Cards {
-    var bgColor: UIColor
-    var image : String
+    var image: UIImage?
       
-    init(bgColor: UIColor, image: String) {
-        self.bgColor = bgColor
+    init(image: UIImage?) {
         self.image = image
     }
 }

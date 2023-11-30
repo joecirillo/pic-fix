@@ -4,21 +4,20 @@
 //
 //  Created by Christopher on 11/27/23.
 //
+//  Swiping animation taken from
+// https://exploringswift.com/blog/making-a-tinder-esque-card-swiping-interface-using-swift
 
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import Photos
 
 class PhotoSwipeViewController: UIViewController {
     let photoSwipeScreen = PhotoSwipeView()
     var currentUser:FirebaseAuth.User?
     let database = Firestore.firestore()
-    var cardViewData = [Cards(bgColor: UIColor(red:0.96, green:0.81, blue:0.46, alpha:1.0), image: "hamburger"),
-                        Cards(bgColor: UIColor(red:0.29, green:0.64, blue:0.96, alpha:1.0), image: "puppy"),
-                        Cards(bgColor: UIColor(red:0.29, green:0.63, blue:0.49, alpha:1.0), image: "poop"),
-                        Cards(bgColor: UIColor(red:0.69, green:0.52, blue:0.38, alpha:1.0), image: "panda"),
-                        Cards(bgColor: UIColor(red:0.90, green:0.99, blue:0.97, alpha:1.0), image: "subway"),
-                        Cards(bgColor: UIColor(red:0.83, green:0.82, blue:0.69, alpha:1.0), image: "robot")]
+    var cardViewData = [Cards]()
+    var cardImages = [UIImage]()
     var stackContainer:StackContainerView!
 
     override func loadView() {
@@ -27,7 +26,6 @@ class PhotoSwipeViewController: UIViewController {
         view.addSubview(stackContainer)
         setupStackContainer()
         stackContainer.translatesAutoresizingMaskIntoConstraints = false
-
         navigationItem.hidesBackButton = true
         
         if let originalImage = UIImage(systemName: "person.crop.circle") {
@@ -43,7 +41,6 @@ class PhotoSwipeViewController: UIViewController {
             )
             
             navigationItem.leftBarButtonItem = customBarButtonItem
-            
         }
     }
     
@@ -51,7 +48,9 @@ class PhotoSwipeViewController: UIViewController {
         super.viewDidLoad()
         
         title = "PicFix"
+        loadCardViewData()
         stackContainer.dataSource = self
+        stackContainer.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -60,6 +59,52 @@ class PhotoSwipeViewController: UIViewController {
         stackContainer.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -60).isActive = true
         stackContainer.widthAnchor.constraint(equalToConstant: 300).isActive = true
         stackContainer.heightAnchor.constraint(equalToConstant: 400).isActive = true
+    }
+    
+    func loadCardViewData() {
+        loadImages(count: 6)
+        self.stackContainer.remainingcards += 6
+        
+        for image in cardImages {
+            let card = Cards(image: image)
+            cardViewData.append(card)
+        }
+    }
+    
+    func loadImages(count: Int) {
+        for _ in 0...count {
+            if let randomImage = getRandomImage() {
+                cardImages.append(randomImage)
+            } else {
+                print("No image available or permission denied")
+            }
+        }
+    }
+    
+    //MARK: upload a PHAsset reference to the image into Firebase.
+    func getRandomImage() -> UIImage? {
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        
+        let result = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+        
+        if result.count > 0 {
+            let randomIndex = Int(arc4random_uniform(UInt32(result.count)))
+            let randomAsset = result[randomIndex]
+            
+            let requestOptions = PHImageRequestOptions()
+            requestOptions.isSynchronous = true
+            
+            var randomImage: UIImage?
+            
+            PHImageManager.default().requestImage(for: randomAsset, targetSize: CGSize(width: 300, height: 400),
+                                                  contentMode: .aspectFill, options: requestOptions) { image, _ in
+                randomImage = image
+            }
+            return randomImage
+        }
+        return UIImage(named: "AppIcon")
+        
     }
     
     @objc func onButtonViewProfileTapped(){

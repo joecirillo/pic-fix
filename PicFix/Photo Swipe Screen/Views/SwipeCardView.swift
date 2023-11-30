@@ -4,28 +4,26 @@
 //
 //  Created by Christopher on 11/29/23.
 //
+//  Swiping animation taken from
+// https://exploringswift.com/blog/making-a-tinder-esque-card-swiping-interface-using-swift
 
 import UIKit
+import Photos
 
-class SwipeCardView : UIView {
+class SwipeCardView: UIView {
     //MARK: - Properties
-    var swipeView : UIView!
-    var shadowView : UIView!
+    var swipeView: UIView!
+    var shadowView: UIView!
     var imageView: UIImageView!
-  
-    var label = UILabel()
-    var moreButton = UIButton()
-    
-    var delegate : SwipeCardsDelegate?
+      
+    var delegate: SwipeCardsDelegate?
 
-    var divisor : CGFloat = 0
     let baseView = UIView()
     
-    var dataSource : Cards? {
+    var dataSource: Cards? {
         didSet {
-            swipeView.backgroundColor = dataSource?.bgColor
             guard let image = dataSource?.image else { return }
-            imageView.image = UIImage(named: image)
+            imageView.image = image
         }
     }
     
@@ -33,13 +31,11 @@ class SwipeCardView : UIView {
     //MARK: - Init
      override init(frame: CGRect) {
         super.init(frame: .zero)
-        configureShadowView()
-        configureSwipeView()
-        configureLabelView()
-        configureImageView()
-        configureButton()
+        setupShadowView()
+        setupSwipeView()
+        setupImageView()
         addPanGestureOnCards()
-        configureTapGesture()
+        setupTapGesture()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,7 +44,7 @@ class SwipeCardView : UIView {
     
     //MARK: - Configuration
     
-    func configureShadowView() {
+    func setupShadowView() {
         shadowView = UIView()
         shadowView.backgroundColor = .clear
         shadowView.layer.shadowColor = UIColor.black.cgColor
@@ -56,7 +52,6 @@ class SwipeCardView : UIView {
         shadowView.layer.shadowOpacity = 0.8
         shadowView.layer.shadowRadius = 4.0
         addSubview(shadowView)
-        
         shadowView.translatesAutoresizingMaskIntoConstraints = false
         shadowView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         shadowView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
@@ -64,12 +59,11 @@ class SwipeCardView : UIView {
         shadowView.topAnchor.constraint(equalTo: topAnchor).isActive = true
     }
     
-    func configureSwipeView() {
+    func setupSwipeView() {
         swipeView = UIView()
         swipeView.layer.cornerRadius = 15
         swipeView.clipsToBounds = true
         shadowView.addSubview(swipeView)
-        
         swipeView.translatesAutoresizingMaskIntoConstraints = false
         swipeView.leftAnchor.constraint(equalTo: shadowView.leftAnchor).isActive = true
         swipeView.rightAnchor.constraint(equalTo: shadowView.rightAnchor).isActive = true
@@ -77,47 +71,21 @@ class SwipeCardView : UIView {
         swipeView.topAnchor.constraint(equalTo: shadowView.topAnchor).isActive = true
     }
     
-    func configureLabelView() {
-        swipeView.addSubview(label)
-        label.backgroundColor = .white
-        label.textColor = .black
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.leftAnchor.constraint(equalTo: swipeView.leftAnchor).isActive = true
-        label.rightAnchor.constraint(equalTo: swipeView.rightAnchor).isActive = true
-        label.bottomAnchor.constraint(equalTo: swipeView.bottomAnchor).isActive = true
-        label.heightAnchor.constraint(equalToConstant: 85).isActive = true
-        
-    }
-    
-    func configureImageView() {
+    func setupImageView() {
         imageView = UIImageView()
         swipeView.addSubview(imageView)
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill//scaleToFill?
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 15
         imageView.translatesAutoresizingMaskIntoConstraints = false
-
+        imageView.image = UIImage(systemName: "camera.fill")
         imageView.centerXAnchor.constraint(equalTo: swipeView.centerXAnchor).isActive = true
         imageView.centerYAnchor.constraint(equalTo: swipeView.centerYAnchor, constant: -30).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
-    }
-    
-    func configureButton() {
-        label.addSubview(moreButton)
-        moreButton.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "plus-tab")?.withRenderingMode(.alwaysTemplate)
-        moreButton.setImage(image, for: .normal)
-        moreButton.tintColor = UIColor.red
-        
-        moreButton.rightAnchor.constraint(equalTo: label.rightAnchor, constant: -15).isActive = true
-        moreButton.centerYAnchor.constraint(equalTo: label.centerYAnchor).isActive = true
-        moreButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        moreButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    
+        imageView.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 400).isActive = true
     }
 
-    func configureTapGesture() {
+    func setupTapGesture() {
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapGesture)))
     }
     
@@ -136,12 +104,9 @@ class SwipeCardView : UIView {
         let centerOfParentContainer = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
         card.center = CGPoint(x: centerOfParentContainer.x + point.x, y: centerOfParentContainer.y + point.y)
         
-        let distanceFromCenter = ((UIScreen.main.bounds.width / 2) - card.center.x)
-        divisor = ((UIScreen.main.bounds.width / 2) / 0.61)
-       
         switch sender.state {
         case .ended:
-            if (card.center.x) > 400 {
+            if (card.center.x) > 370 {
                 delegate?.swipeDidEnd(on: card)
                 UIView.animate(withDuration: 0.2) {
                     card.center = CGPoint(x: centerOfParentContainer.x + point.x + 200, y: centerOfParentContainer.y + point.y + 75)
@@ -149,10 +114,22 @@ class SwipeCardView : UIView {
                     self.layoutIfNeeded()
                 }
                 return
-            }else if card.center.x < -55 {
+            }else if card.center.x < -40 {
                 delegate?.swipeDidEnd(on: card)
+                //sendToRecentlyDeleted(image: (dataSource?.image)!)
+                deleteImages(images: imageView.image!)
                 UIView.animate(withDuration: 0.2) {
                     card.center = CGPoint(x: centerOfParentContainer.x + point.x - 200, y: centerOfParentContainer.y + point.y + 75)
+                    card.alpha = 0
+                    self.layoutIfNeeded()
+                }
+                return
+            } else if card.center.y < 50 {
+                delegate?.swipeDidEnd(on: card)
+                //MARK: insert add to collection functionality
+                
+                UIView.animate(withDuration: 0.2) {
+                    card.center = CGPoint(x: centerOfParentContainer.x + point.x, y: centerOfParentContainer.y + point.y + 200)
                     card.alpha = 0
                     self.layoutIfNeeded()
                 }
@@ -169,6 +146,30 @@ class SwipeCardView : UIView {
             
         default:
             break
+        }
+    }
+    
+    //MARK: send photo to a collection of photos to be deleted
+    // implying that we save an extra collection of photos for recently deleted
+    func sendToRecentlyDeleted(image: UIImage) {
+        
+    }
+    
+    //MARK: used for actually deleting photos after user is done
+    // change argument to images: [UIImage]
+    // for now, is only deleting randomly
+    func deleteImages(images: UIImage) {
+        PHPhotoLibrary.shared().performChanges({
+            let assets = PHAsset.fetchAssets(with: .image, options: nil)
+            if let assetToDelete = assets.firstObject {
+                PHAssetChangeRequest.deleteAssets([assetToDelete] as NSArray)
+            }
+        }) { success, error in
+            if success {
+                print("Image deleted")
+            } else {
+                print("Error deleting image: \(String(describing: error))")
+            }
         }
     }
     

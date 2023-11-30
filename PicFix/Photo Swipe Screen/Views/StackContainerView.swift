@@ -4,6 +4,8 @@
 //
 //  Created by Christopher on 11/29/23.
 //
+//  Swiping animation taken from
+// https://exploringswift.com/blog/making-a-tinder-esque-card-swiping-interface-using-swift
 
 import UIKit
 
@@ -12,7 +14,7 @@ class StackContainerView: UIView, SwipeCardsDelegate {
     //MARK: - Properties
     var numberOfCardsToShow: Int = 0
     var cardsToBeVisible: Int = 3
-    var cardViews : [SwipeCardView] = []
+    var cardViews: [SwipeCardView] = []
     var remainingcards: Int = 0
     
     let horizontalInset: CGFloat = 10.0
@@ -21,6 +23,7 @@ class StackContainerView: UIView, SwipeCardsDelegate {
     var visibleCards: [SwipeCardView] {
         return subviews as? [SwipeCardView] ?? []
     }
+    var delegate: PhotoSwipeViewController?
     var dataSource: SwipeCardsDataSource? {
         didSet {
             reloadData()
@@ -84,7 +87,9 @@ class StackContainerView: UIView, SwipeCardsDelegate {
     func swipeDidEnd(on view: SwipeCardView) {
         guard let datasource = dataSource else { return }
         view.removeFromSuperview()
-
+        if remainingcards < 4 {
+            self.delegate?.loadCardViewData()
+        }
         if remainingcards > 0 {
             let newIndex = datasource.numberOfCardsToShow() - remainingcards
             addCardView(cardView: datasource.card(at: newIndex), atIndex: 2)

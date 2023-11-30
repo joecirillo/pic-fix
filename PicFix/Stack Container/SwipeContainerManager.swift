@@ -4,6 +4,8 @@
 //
 //  Created by Christopher on 11/29/23.
 //
+//  Swiping animation taken from
+// https://exploringswift.com/blog/making-a-tinder-esque-card-swiping-interface-using-swift
 
 import UIKit
 

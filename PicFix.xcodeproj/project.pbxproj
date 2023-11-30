@@ -143,13 +143,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1FDC36288DF113B913765441 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		832071FC2B15721E006C3499 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,7 +192,6 @@
 			children = (
 				D80D34592B068F6800D385F4 /* PicFix */,
 				D80D34582B068F6800D385F4 /* Products */,
-				1FDC36288DF113B913765441 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
