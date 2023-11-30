@@ -209,10 +209,10 @@
 		D848259E2B0BCBC1004DB2C3 /* Create Account Screen */ = {
 			isa = PBXGroup;
 			children = (
+				D85970B82B181888005CFD38 /* Views */,
 				D84825962B0BCADF004DB2C3 /* CreateAccountFirebaseManager.swift */,
 				D84825942B0BCAB6004DB2C3 /* CreateAccountProgressIndicator.swift */,
 				D84825582B0BC5F1004DB2C3 /* CreateAccountViewController.swift */,
-				D84825922B0BC8F7004DB2C3 /* CreateAccountScreenView.swift */,
 			);
 			path = "Create Account Screen";
 			sourceTree = "<group>";
@@ -220,10 +220,26 @@
 		D85970B72B16AD90005CFD38 /* Edit Profile Screen */ = {
 			isa = PBXGroup;
 			children = (
+				D85970B92B18232D005CFD38 /* Views */,
 				D85970B32B16ACBD005CFD38 /* EditProfileViewController.swift */,
-				D85970B52B16ACDD005CFD38 /* EditProfileView.swift */,
 			);
 			path = "Edit Profile Screen";
+			sourceTree = "<group>";
+		};
+		D85970B82B181888005CFD38 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D84825922B0BC8F7004DB2C3 /* CreateAccountScreenView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D85970B92B18232D005CFD38 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D85970B52B16ACDD005CFD38 /* EditProfileView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D8D111BA2B1512B2001B2FD9 /* Profile Screen */ = {
