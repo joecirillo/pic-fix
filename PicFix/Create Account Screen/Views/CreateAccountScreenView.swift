@@ -73,6 +73,8 @@ class CreateAccountScreenView: UIView {
         passwordTextField = UITextField()
         passwordTextField.placeholder = "Password"
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.textContentType = .password
+        passwordTextField.isSecureTextEntry = true
         passwordTextField.borderStyle = .roundedRect
         passwordTextField.layer.borderColor = UIColor.gray.cgColor
         passwordTextField.layer.cornerRadius = 10.0
@@ -83,6 +85,8 @@ class CreateAccountScreenView: UIView {
         passwordConfirmTextField = UITextField()
         passwordConfirmTextField.placeholder = "Retype Password"
         passwordConfirmTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordConfirmTextField.textContentType = .password
+        passwordConfirmTextField.isSecureTextEntry = true
         passwordConfirmTextField.borderStyle = .roundedRect
         passwordConfirmTextField.layer.borderColor = UIColor.gray.cgColor
         passwordConfirmTextField.layer.cornerRadius = 10.0

@@ -23,6 +23,7 @@ class MainScreenView: UIView {
         setupLogInButton()
         setupSignUpButton()
         setupLogoImage()
+        togglePasswordVisibility()
         
         initConstraints()
     }
@@ -30,7 +31,7 @@ class MainScreenView: UIView {
     
     func setupEmail(){
         emailTextField = UITextField()
-        emailTextField.placeholder = "Name"
+        emailTextField.placeholder = "Email"
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.borderStyle = .roundedRect
         emailTextField.layer.borderColor = UIColor.gray.cgColor
@@ -42,11 +43,34 @@ class MainScreenView: UIView {
         passwordTextField = UITextField()
         passwordTextField.placeholder = "Password"
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.textContentType = .password
+        passwordTextField.isSecureTextEntry = true
         passwordTextField.borderStyle = .roundedRect
         passwordTextField.layer.borderColor = UIColor.gray.cgColor
         passwordTextField.layer.cornerRadius = 10.0
         passwordTextField.layer.borderWidth = 1.0
         self.addSubview(passwordTextField)
+        
+        // Add an eye button next to the passwordTextField
+        let eyeButton = UIButton(type: .custom)
+        eyeButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+        eyeButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
+        eyeButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+        
+        // Set the eye button as the rightView of passwordTextField
+        passwordTextField.rightView = eyeButton
+        passwordTextField.rightViewMode = .always
+    }
+    
+    @objc func togglePasswordVisibility() {
+        // Toggle the isSecureTextEntry property
+        passwordTextField.isSecureTextEntry.toggle()
+        // Update the eye button image based on the current state
+        if passwordTextField.isSecureTextEntry {
+            (passwordTextField.rightView as? UIButton)?.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+        } else {
+            (passwordTextField.rightView as? UIButton)?.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+        }
     }
      
     func setupLogInButton(){

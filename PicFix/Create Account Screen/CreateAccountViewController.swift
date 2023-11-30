@@ -42,6 +42,7 @@ class CreateAccountViewController: UIViewController {
         }
         else {
             // implement error alert here
+            showIncorrectErrorAlert()
             print("passwords don't match")
         }
     }
@@ -90,6 +91,16 @@ class CreateAccountViewController: UIViewController {
         
         photoPicker.delegate = self
         present(photoPicker, animated: true, completion: nil)
+    }
+    func showEmptyErrorAlert(){
+        let alert = UIAlertController(title: "Error", message: "Please fill in empty inputs", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true)
+    }
+    func showIncorrectErrorAlert(){
+        let alert = UIAlertController(title: "Error", message: "Passwords do not match", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true)
     }
 }
 

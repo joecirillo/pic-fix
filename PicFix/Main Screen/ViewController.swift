@@ -15,7 +15,6 @@ class ViewController: UIViewController {
         view = mainScreenView
         
         mainScreenView.logInButton.addTarget(self, action: #selector(onLogInButtonTapped), for: .touchUpInside)
-        
         mainScreenView.signUpButton.addTarget(self, action: #selector(onSignUpButtonTapped), for: .touchUpInside)
     }
 
