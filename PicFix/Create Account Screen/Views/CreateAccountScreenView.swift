@@ -9,6 +9,7 @@ import UIKit
 
 class CreateAccountScreenView: UIView {
     var scrollView = UIScrollView()
+    var profilePhotoButton: UIButton!
     var userNameTextField = UITextField()
     var userEmailTextField: UITextField!
     var passwordTextField = UITextField()
@@ -20,13 +21,14 @@ class CreateAccountScreenView: UIView {
         self.backgroundColor = .systemBackground
         
         setupScrollView()
+        setupProfilePhotoButton()
         setupUserEmail()
         setupUserName()
         passwordConfirm()
         setupPassword()
         setupCreateAccountButton()
         
-        initConstrains()
+        initConstraints()
     }
     
     func setupScrollView(){
@@ -34,6 +36,19 @@ class CreateAccountScreenView: UIView {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(scrollView)
     }
+    
+    func setupProfilePhotoButton() {
+        profilePhotoButton = UIButton(type: .system)
+        profilePhotoButton.setTitle("", for: .normal)
+        profilePhotoButton.setImage(UIImage(systemName: "camera"), for: .normal)
+        profilePhotoButton.contentHorizontalAlignment = .fill
+        profilePhotoButton.contentVerticalAlignment = .fill
+        profilePhotoButton.imageView?.contentMode = .scaleAspectFit
+        profilePhotoButton.showsMenuAsPrimaryAction = true
+        profilePhotoButton.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(profilePhotoButton)
+    }
+    
     func setupUserName(){
         userNameTextField = UITextField()
         userNameTextField.placeholder = "Name"
@@ -85,15 +100,20 @@ class CreateAccountScreenView: UIView {
         self.addSubview(createAccountButton)
     }
     
-    func initConstrains(){
+    func initConstraints(){
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
             scrollView.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor),
             scrollView.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor),
             
+            profilePhotoButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            profilePhotoButton.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 32),
+            profilePhotoButton.widthAnchor.constraint(equalToConstant: 100),
+            profilePhotoButton.heightAnchor.constraint(equalToConstant: 100),
+            
             userNameTextField.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            userNameTextField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 32),
+            userNameTextField.topAnchor.constraint(equalTo: profilePhotoButton.bottomAnchor, constant: 32),
             userNameTextField.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 50),
             userNameTextField.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -50),
             
