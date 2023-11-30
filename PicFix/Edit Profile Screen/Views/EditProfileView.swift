@@ -9,7 +9,7 @@ import UIKit
 
 class EditProfileView: UIView {
 
-    var contactPhoto: UIImageView!
+    var profilePhotoButton: UIButton!
     var name: UITextField!
     var email: UILabel!
     var photosDeletedLabel: UILabel!
@@ -21,8 +21,8 @@ class EditProfileView: UIView {
         
         self.backgroundColor = .white
         
-        setupContactPhoto()
         setupName()
+        setupProfilePhotoButton()
         setupEmail()
         setupPhotosDeletedLabel()
         setupMegabytesSavedLabel()
@@ -30,14 +30,16 @@ class EditProfileView: UIView {
         initConstraints()
     }
     
-    func setupContactPhoto(){
-        contactPhoto = UIImageView()
-        contactPhoto.image = UIImage(systemName: "person.crop.circle")
-        contactPhoto.contentMode = .scaleToFill
-        contactPhoto.clipsToBounds = true
-        contactPhoto.layer.cornerRadius = 10
-        contactPhoto.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(contactPhoto)
+    func setupProfilePhotoButton() {
+        profilePhotoButton = UIButton(type: .system)
+        profilePhotoButton.setTitle("", for: .normal)
+        profilePhotoButton.setImage(UIImage(systemName: "person.crop.circle"), for: .normal)
+        profilePhotoButton.contentHorizontalAlignment = .fill
+        profilePhotoButton.contentVerticalAlignment = .fill
+        profilePhotoButton.imageView?.contentMode = .scaleAspectFit
+        profilePhotoButton.showsMenuAsPrimaryAction = true
+        profilePhotoButton.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(profilePhotoButton)
     }
     
     func setupName(){
@@ -76,12 +78,12 @@ class EditProfileView: UIView {
     
     func initConstraints(){
         NSLayoutConstraint.activate([
-            contactPhoto.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 8),
-            contactPhoto.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-            contactPhoto.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, constant: -120),
-            contactPhoto.heightAnchor.constraint(equalTo: contactPhoto.widthAnchor),
+            profilePhotoButton.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            profilePhotoButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 32),
+            profilePhotoButton.widthAnchor.constraint(equalToConstant: 100),
+            profilePhotoButton.heightAnchor.constraint(equalToConstant: 100),
             
-            name.topAnchor.constraint(equalTo: contactPhoto.bottomAnchor, constant: 32),
+            name.topAnchor.constraint(equalTo: profilePhotoButton.bottomAnchor, constant: 32),
             name.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             
             email.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 24),
