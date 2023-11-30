@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
@@ -27,12 +28,24 @@ class ProfileViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = customBarButtonItem
         
+        profileScreen.logOutButton.addTarget(self, action: #selector(onLogoutButtonTapped), for: .touchUpInside)
+        
         notificationCenter.addObserver(
             self,
             selector: #selector(notificationReceivedForTextChanged(notification:)),
             name: Notification.Name("textFromSecondScreen"),
             object: nil)
     }
+    
+    @objc func onLogoutButtonTapped() {
+        do {
+            try Auth.auth().signOut()
+            navigationController?.popToRootViewController(animated: true)
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
+    }
+
     
     @objc func onEditButtonTapped() {
         let editProfileScreen = EditProfileViewController()

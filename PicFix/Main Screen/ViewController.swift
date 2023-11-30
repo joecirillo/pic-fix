@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
+
 class ViewController: UIViewController {
     let mainScreenView = MainScreenView()
     let childProgressView = ProgressSpinnerViewController()
@@ -18,6 +19,7 @@ class ViewController: UIViewController {
     
     override func loadView(){
         view = mainScreenView
+        //1111
     }
     
     override func viewWillAppear(_ animated: Bool) {

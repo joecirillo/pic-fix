@@ -52,6 +52,13 @@ class PhotoSwipeViewController: UIViewController {
         stackContainer.dataSource = self
         stackContainer.delegate = self
         // Do any additional setup after loading the view.
+        
+        photoSwipeScreen.albumsButton.addTarget(self, action: #selector(onAlbumsButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func onAlbumsButtonTapped() {
+        let albumViewController = AlbumViewController()
+        navigationController?.pushViewController(albumViewController, animated: true)
     }
     
     func setupStackContainer() {
