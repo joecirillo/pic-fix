@@ -170,21 +170,21 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		8393823E2B190AF30006B69C /* New Group */ = {
+		8393823E2B190AF30006B69C /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
 				8393823F2B190AFE0006B69C /* Cards.swift */,
 			);
-			path = "New Group";
+			path = "Data Models";
 			sourceTree = "<group>";
 		};
-		839382412B190B030006B69C /* New Group1 */ = {
+		839382412B190B030006B69C /* Swipe Container */ = {
 			isa = PBXGroup;
 			children = (
 				839382422B190B0F0006B69C /* SwipeContainerDelegate.swift */,
 				839382432B190B0F0006B69C /* SwipeContainerManager.swift */,
 			);
-			path = "New Group1";
+			path = "Swipe Container";
 			sourceTree = "<group>";
 		};
 		D80D344E2B068F6800D385F4 = {
@@ -206,8 +206,6 @@
 		D80D34592B068F6800D385F4 /* PicFix */ = {
 			isa = PBXGroup;
 			children = (
-				839382412B190B030006B69C /* New Group1 */,
-				8393823E2B190AF30006B69C /* New Group */,
 				D80D345A2B068F6800D385F4 /* AppDelegate.swift */,
 				D80D345C2B068F6800D385F4 /* SceneDelegate.swift */,
 				D848259D2B0BCBAD004DB2C3 /* Main Screen */,
@@ -216,6 +214,8 @@
 				D848259E2B0BCBC1004DB2C3 /* Create Account Screen */,
 				832071FF2B15A69F006C3499 /* Photo Swipe Screen */,
 				D848259C2B0BCB76004DB2C3 /* Progress Indicator */,
+				839382412B190B030006B69C /* Swipe Container */,
+				8393823E2B190AF30006B69C /* Data Models */,
 				D80D34602B068F6800D385F4 /* Main.storyboard */,
 				D80D34632B068F6C00D385F4 /* Assets.xcassets */,
 				D80D34652B068F6C00D385F4 /* LaunchScreen.storyboard */,
