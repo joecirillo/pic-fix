@@ -6,20 +6,38 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class ViewController: UIViewController {
     let mainScreenView = MainScreenView()
     let childProgressView = ProgressSpinnerViewController()
-
+    let database = Firestore.firestore()
+    var handleAuth: AuthStateDidChangeListenerHandle?
+    var currentUser: FirebaseAuth.User?
+    
     override func loadView(){
         view = mainScreenView
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        handleAuth = Auth.auth().addStateDidChangeListener{ auth, user in
+            if user == nil{
+                //MARK: not signed in...
+                self.currentUser = nil
+                self.mainScreenView.logInButton.addTarget(self, action: #selector(self.onLogInButtonTapped), for: .touchUpInside)
+                self.mainScreenView.signUpButton.addTarget(self, action: #selector(self.onSignUpButtonTapped), for: .touchUpInside)
+            } else {
+                let photoSwipeViewController = PhotoSwipeViewController()
+                self.navigationController?.pushViewController(photoSwipeViewController, animated: true)
+            }
+        }
         
         mainScreenView.logInButton.addTarget(self, action: #selector(onLogInButtonTapped), for: .touchUpInside)
         mainScreenView.signUpButton.addTarget(self, action: #selector(onSignUpButtonTapped), for: .touchUpInside)
     }
 
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         title = "PicFix"
