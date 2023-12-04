@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49744C9B2B1D058D00620D76 /* AlbumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49744C9A2B1D058D00620D76 /* AlbumTableViewController.swift */; };
+		49744C9D2B1D08CD00620D76 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49744C9C2B1D08CD00620D76 /* Album.swift */; };
+		49744C9F2B1D090E00620D76 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49744C9E2B1D090E00620D76 /* AlbumView.swift */; };
+		49744CA12B1D0F1C00620D76 /* PhotoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49744CA02B1D0F1C00620D76 /* PhotoGridView.swift */; };
+		49744CA32B1D0F3800620D76 /* PhotoGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49744CA22B1D0F3700620D76 /* PhotoGridViewController.swift */; };
 		832071FE2B15725E006C3499 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832071FD2B15725E006C3499 /* AuthManager.swift */; };
 		832072012B15A6D0006C3499 /* PhotoSwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832072002B15A6D0006C3499 /* PhotoSwipeViewController.swift */; };
 		832072052B15A917006C3499 /* LoginProgressIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832072042B15A917006C3499 /* LoginProgressIndicatorManager.swift */; };
@@ -69,6 +74,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49744C9A2B1D058D00620D76 /* AlbumTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewController.swift; sourceTree = "<group>"; };
+		49744C9C2B1D08CD00620D76 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		49744C9E2B1D090E00620D76 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
+		49744CA02B1D0F1C00620D76 /* PhotoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridView.swift; sourceTree = "<group>"; };
+		49744CA22B1D0F3700620D76 /* PhotoGridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridViewController.swift; sourceTree = "<group>"; };
 		832071FD2B15725E006C3499 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		832072002B15A6D0006C3499 /* PhotoSwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSwipeViewController.swift; sourceTree = "<group>"; };
 		832072042B15A917006C3499 /* LoginProgressIndicatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProgressIndicatorManager.swift; sourceTree = "<group>"; };
@@ -143,6 +153,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		49744CA42B1D0FB100620D76 /* Album Table Screen */ = {
+			isa = PBXGroup;
+			children = (
+				49744C9E2B1D090E00620D76 /* AlbumView.swift */,
+				49744C9A2B1D058D00620D76 /* AlbumTableViewController.swift */,
+			);
+			path = "Album Table Screen";
+			sourceTree = "<group>";
+		};
+		49744CA52B1D0FD400620D76 /* Photo Grid Screen */ = {
+			isa = PBXGroup;
+			children = (
+				49744CA22B1D0F3700620D76 /* PhotoGridViewController.swift */,
+				49744CA02B1D0F1C00620D76 /* PhotoGridView.swift */,
+			);
+			path = "Photo Grid Screen";
+			sourceTree = "<group>";
+		};
 		832071FC2B15721E006C3499 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				8393823F2B190AFE0006B69C /* Cards.swift */,
+				49744C9C2B1D08CD00620D76 /* Album.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -213,6 +242,8 @@
 				D85970B72B16AD90005CFD38 /* Edit Profile Screen */,
 				D848259E2B0BCBC1004DB2C3 /* Create Account Screen */,
 				832071FF2B15A69F006C3499 /* Photo Swipe Screen */,
+				49744CA42B1D0FB100620D76 /* Album Table Screen */,
+				49744CA52B1D0FD400620D76 /* Photo Grid Screen */,
 				D848259C2B0BCB76004DB2C3 /* Progress Indicator */,
 				839382412B190B030006B69C /* Swipe Container */,
 				8393823E2B190AF30006B69C /* Data Models */,
@@ -400,13 +431,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D85970B62B16ACDD005CFD38 /* EditProfileView.swift in Sources */,
+				49744C9B2B1D058D00620D76 /* AlbumTableViewController.swift in Sources */,
 				D8D111B72B151296001B2FD9 /* ProfileView.swift in Sources */,
 				D84825592B0BC5F1004DB2C3 /* CreateAccountViewController.swift in Sources */,
 				839382402B190AFE0006B69C /* Cards.swift in Sources */,
 				839382362B1908BE0006B69C /* StackContainerView.swift in Sources */,
+				49744C9F2B1D090E00620D76 /* AlbumView.swift in Sources */,
 				D80D345F2B068F6800D385F4 /* ViewController.swift in Sources */,
 				D84825972B0BCADF004DB2C3 /* CreateAccountFirebaseManager.swift in Sources */,
 				D848259B2B0BCB34004DB2C3 /* ProgressSpinnerViewController.swift in Sources */,
+				49744C9D2B1D08CD00620D76 /* Album.swift in Sources */,
 				D84825932B0BC8F7004DB2C3 /* CreateAccountScreenView.swift in Sources */,
 				D80D345B2B068F6800D385F4 /* AppDelegate.swift in Sources */,
 				832072012B15A6D0006C3499 /* PhotoSwipeViewController.swift in Sources */,
@@ -415,9 +449,11 @@
 				839382452B190B0F0006B69C /* SwipeContainerManager.swift in Sources */,
 				839382442B190B0F0006B69C /* SwipeContainerDelegate.swift in Sources */,
 				D8D111B92B1512AD001B2FD9 /* ProfileViewController.swift in Sources */,
+				49744CA32B1D0F3800620D76 /* PhotoGridViewController.swift in Sources */,
 				839382372B1908BE0006B69C /* PhotoSwipeView.swift in Sources */,
 				D85970B42B16ACBE005CFD38 /* EditProfileViewController.swift in Sources */,
 				D84825952B0BCAB6004DB2C3 /* CreateAccountProgressIndicator.swift in Sources */,
+				49744CA12B1D0F1C00620D76 /* PhotoGridView.swift in Sources */,
 				832071FE2B15725E006C3499 /* AuthManager.swift in Sources */,
 				D84825992B0BCB09004DB2C3 /* ProgressSpinnerDelegate.swift in Sources */,
 				D80D347C2B06941100D385F4 /* MainScreenView.swift in Sources */,
