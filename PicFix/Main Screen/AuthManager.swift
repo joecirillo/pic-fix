@@ -30,7 +30,7 @@ extension ViewController {
                 self.hideActivityIndicator()
                 let photoSwipeViewController = PhotoSwipeViewController()
                 //MARK: duplicated push
-                self.navigationController?.pushViewController(photoSwipeViewController, animated: true)
+                //self.navigationController?.pushViewController(photoSwipeViewController, animated: true)
             }else{
                 self.hideActivityIndicator()
                 print(error)

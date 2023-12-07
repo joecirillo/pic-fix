@@ -9,24 +9,35 @@
 
 import UIKit
 import Photos
+import FirebaseFirestore
 
 class SwipeCardView: UIView {
     //MARK: - Properties
     var swipeView: UIView!
     var shadowView: UIView!
     var imageView: UIImageView!
-      
+    var filePath: String?
     var delegate: SwipeCardsDelegate?
+    let database = Firestore.firestore()
+    let notificationCenter = NotificationCenter.default
 
     let baseView = UIView()
     
     var dataSource: Cards? {
         didSet {
-            guard let image = dataSource?.image else { return }
-            imageView.image = image
+            guard let filePath = dataSource?.image else { return }
+            imageView.image = getImageForPath(filePath)
         }
     }
     
+    func getImageForPath(_ filePath: String) -> UIImage? {
+        if let image = UIImage(contentsOfFile: filePath) {
+            return image
+        } else {
+            print("Error loading image from file path: \(filePath)")
+            return UIImage(named: "AppIcon")
+        }
+    }
     
     //MARK: - Init
      override init(frame: CGRect) {
@@ -95,19 +106,17 @@ class SwipeCardView: UIView {
         addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture)))
     }
     
-    
-    
     //MARK: - Handlers
     @objc func handlePanGesture(sender: UIPanGestureRecognizer){
         let card = sender.view as! SwipeCardView
         let point = sender.translation(in: self)
         let centerOfParentContainer = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
-        card.center = CGPoint(x: centerOfParentContainer.x + point.x, y: centerOfParentContainer.y + point.y)
+        card.center = CGPoint(x: centerOfParentContainer.x + point.x * 1.2, y: centerOfParentContainer.y + point.y)
         
         switch sender.state {
         case .ended:
             if (card.center.x) > 370 {
-                delegate?.swipeDidEnd(on: card)
+                delegate?.swipeDidEnd(on: card, image: nil)
                 UIView.animate(withDuration: 0.2) {
                     card.center = CGPoint(x: centerOfParentContainer.x + point.x + 200, y: centerOfParentContainer.y + point.y + 75)
                     card.alpha = 0
@@ -115,9 +124,12 @@ class SwipeCardView: UIView {
                 }
                 return
             }else if card.center.x < -40 {
-                delegate?.swipeDidEnd(on: card)
+                delegate?.swipeDidEnd(on: card, image: nil)
+                notificationCenter.post(
+                            name: Notification.Name("albumSelected"),
+                            object: "",
+                            userInfo: ["image": (dataSource?.image)!, "name": "recentlyDeleted"])
                 //sendToRecentlyDeleted(image: (dataSource?.image)!)
-                deleteImages(images: imageView.image!)
                 UIView.animate(withDuration: 0.2) {
                     card.center = CGPoint(x: centerOfParentContainer.x + point.x - 200, y: centerOfParentContainer.y + point.y + 75)
                     card.alpha = 0
@@ -125,8 +137,9 @@ class SwipeCardView: UIView {
                 }
                 return
             } else if card.center.y < 50 {
-                delegate?.swipeDidEnd(on: card)
+                delegate?.swipeDidEnd(on: card, image: (dataSource?.image)!)
                 //MARK: insert add to collection functionality
+                //delegate.sendToAlbumSelect(
                 
                 UIView.animate(withDuration: 0.2) {
                     card.center = CGPoint(x: centerOfParentContainer.x + point.x, y: centerOfParentContainer.y + point.y + 200)
@@ -149,16 +162,16 @@ class SwipeCardView: UIView {
         }
     }
     
-    //MARK: send photo to a collection of photos to be deleted
-    // implying that we save an extra collection of photos for recently deleted
-    func sendToRecentlyDeleted(image: UIImage) {
-        
-    }
+//    //MARK: send photo to a collection of photos to be deleted
+//    // implying that we save an extra collection of photos for recently deleted
+//    func sendToRecentlyDeleted(image: UIImage) {
+//        
+//    }
     
     //MARK: used for actually deleting photos after user is done
-    // change argument to images: [UIImage]
+    // change argument to images: [String]
     // for now, is only deleting randomly
-    func deleteImages(images: UIImage) {
+    func deleteImages(filePaths: [String]) {
         PHPhotoLibrary.shared().performChanges({
             let assets = PHAsset.fetchAssets(with: .image, options: nil)
             if let assetToDelete = assets.firstObject {
@@ -171,7 +184,43 @@ class SwipeCardView: UIView {
                 print("Error deleting image: \(String(describing: error))")
             }
         }
+        for path in filePaths {
+            do {
+                try FileManager.default.removeItem(atPath: path)
+                print("Local photo file deleted successfully at path: \(path)")
+            } catch {
+                print("Error deleting local photo file at path: \(path), error: \(error)")
+            }
+        }
+        
+        let collectionFilePaths = Firestore.firestore().collection("filePaths")
+        
+        collectionFilePaths.whereField("filePath", isEqualTo: filePaths).getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error fetching documents")
+                return
+            }
+            
+            guard let documents = snapshot?.documents, let document = documents.first else {
+                print("No document found with file path")
+                return
+            }
+            
+            collectionFilePaths.document(document.documentID).delete { error in
+                if let error = error {
+                    print("error deleting document")
+                } else {
+                    print("photo deleted successfully")
+                }
+            }
+        }
     }
+    
+    func addToAlbum(image: UIImage, album: String) {
+        let collectionFilePaths = self.database.collection("photoUrl")
+        
+    }
+
     
     @objc func handleTapGesture(sender: UITapGestureRecognizer){
     }

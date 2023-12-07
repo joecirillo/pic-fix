@@ -17,8 +17,12 @@ class PhotoSwipeViewController: UIViewController {
     var currentUser:FirebaseAuth.User?
     let database = Firestore.firestore()
     var cardViewData = [Cards]()
-    var cardImages = [UIImage]()
+    var cardImages = [String]()
+    //var filePaths = [FilePath]() //MARK: might not need this
     var stackContainer:StackContainerView!
+    let notificationCenter = NotificationCenter.default
+    let childProgressView = ProgressSpinnerViewController()
+
 
     override func loadView() {
         view = photoSwipeScreen
@@ -52,6 +56,22 @@ class PhotoSwipeViewController: UIViewController {
         stackContainer.dataSource = self
         stackContainer.delegate = self
         // Do any additional setup after loading the view.
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(notificationReceivedForAlbumsSelected(notification:)),
+            name: Notification.Name("albumsSelected"),
+            object: nil)
+        photoSwipeScreen.albumsButton.addTarget(self, action: #selector(onAlbumsButtonTapped), for: .touchUpInside)
+        photoSwipeScreen.recentlyDeletedButton.addTarget(self, action: #selector(onRecentlyDeletedButtonTapped), for: .touchUpInside)
+
+    }
+    
+    @objc func onAlbumsButtonTapped() {
+        
+    }
+    
+    @objc func onRecentlyDeletedButtonTapped() {
+        
     }
     
     func setupStackContainer() {
@@ -66,8 +86,17 @@ class PhotoSwipeViewController: UIViewController {
         self.stackContainer.remainingcards += 6
         
         for image in cardImages {
-            let card = Cards(image: image)
-            cardViewData.append(card)
+            getPHAsset(from: image) { asset in
+                if let asset = asset {
+                    // Use the PHAsset as needed
+                    let path = self.getFilePath(for: asset)
+                    let card = Cards(image: path)
+                    self.cardViewData.append(card)
+                } else {
+                    print("PHAsset not found for file path: \(image)")
+                }
+            }
+            
         }
     }
     
@@ -82,7 +111,9 @@ class PhotoSwipeViewController: UIViewController {
     }
     
     //MARK: upload a PHAsset reference to the image into Firebase.
-    func getRandomImage() -> UIImage? {
+    func getRandomImage() -> String? {
+        var cardImage: String?
+        //var imagePath: String?
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
@@ -92,24 +123,134 @@ class PhotoSwipeViewController: UIViewController {
             let randomIndex = Int(arc4random_uniform(UInt32(result.count)))
             let randomAsset = result[randomIndex]
             
-            let requestOptions = PHImageRequestOptions()
-            requestOptions.isSynchronous = true
-            
-            var randomImage: UIImage?
-            
-            PHImageManager.default().requestImage(for: randomAsset, targetSize: CGSize(width: 300, height: 400),
-                                                  contentMode: .aspectFill, options: requestOptions) { image, _ in
-                randomImage = image
+            // get reference for selected photo
+            if let filePath = getFilePath(for: randomAsset) {
+                cardImage = filePath
             }
-            return randomImage
         }
-        return UIImage(named: "AppIcon")
+        return cardImage
+    }
+    
+    func getImageForFilePath(filePath: String) -> UIImage? {
+        var cardImage: UIImage?
+        getPHAsset(from: filePath) { asset in
+            if let asset = asset {
+                let requestOptions = PHImageRequestOptions()
+                requestOptions.isSynchronous = true
+                PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 300, height: 400),
+                                                      contentMode: .aspectFill, options: requestOptions) { image, _ in
+                    cardImage = image
+                }
+                
+                if let pickedImage = cardImage {
+                    // upload reference to firebase
+                    if self.checkFilePathExists(filePath: filePath)! {
+                        print("filepath not in firebase")
+                        self.saveFilePath(filePath: filePath)
+                        //imagePath = filePath
+                        cardImage = pickedImage
+                    } else { // unless it already exists
+                        //imagePath = ""
+                        cardImage = UIImage(named: "AppIcon")
+                        print("Duplicate local identifier found")
+                    }
+                } else {
+                    //imagePath = ""
+                    print("did not get filepath")
+                    cardImage = UIImage(named: "AppIcon")
+                    print("error: file path not found")
+                }
+            } else {
+                print("PHAsset not found for file path: \(filePath)")
+            }
+        }
+        return cardImage
+    }
+    
+    func getPHAsset(from filePath: String, completion: @escaping (PHAsset?) -> Void) {
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+
+        let fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+
+        let filename = (filePath as NSString).lastPathComponent
+
+        for index in 0..<fetchResult.count {
+            let asset = fetchResult.object(at: index)
+            let assetResources = PHAssetResource.assetResources(for: asset)
+
+            for resource in assetResources {
+                if resource.originalFilename == filename {
+                    completion(asset)
+                    return
+                }
+            }
+        }
+        completion(nil)
+    }
+    
+    func getFilePath(for asset: PHAsset) -> String? {
+        let options = PHImageRequestOptions()
+        options.isSynchronous = true
+        
+        var filePath: String?
+        
+        let assetIdentifier = asset.localIdentifier
+        
+        if let documentDirectory = FileManager.default.urls(for: .documentDirectory,
+                                                            in: .userDomainMask).first {
+            let fileURL = documentDirectory.appendingPathComponent(assetIdentifier)
+            filePath = fileURL.path()
+            
+            if !FileManager.default.fileExists(atPath: filePath!) {
+                PHImageManager.default().requestImageDataAndOrientation(for: asset, options: options) { data, _, _, _ in
+                    if let data = data {
+                        try? data.write(to: fileURL, options: .atomic)
+                    }
+                }
+            }
+        }
+        
+        return filePath
+    }
+    
+    func openAlbumSelector(image: String?) {
+        let albumSelectViewController = AlbumSelectViewController()
+        albumSelectViewController.addImage = image
+        albumSelectViewController.currentUser = self.currentUser
+
+        navigationController?.pushViewController(albumSelectViewController, animated: true)
         
     }
     
     @objc func onButtonViewProfileTapped(){
         let profileViewScreen = ProfileViewController()
         navigationController?.pushViewController(profileViewScreen, animated: true)
+    }
+    
+    @objc func notificationReceivedForAlbumsSelected(notification: Notification){
+        let db = Firestore.firestore()
+
+        var albumUser = notification.userInfo!["user"]
+        var albumImage = notification.userInfo!["image"]
+        var albumNames = notification.userInfo!["name"]
+
+        if let albums = albumNames as? [String], let filePath = albumImage as? String {
+            for album in albums {
+                let collectionFilePaths = db.collection("users").document(albumUser as! String).collection("albums").document(album).collection("filePaths")
+                showActivityIndicator()
+                do{
+                    try collectionFilePaths.addDocument(from: filePath, completion: {(error) in
+                        if error == nil{
+                            self.navigationController?.popViewController(animated: true)
+                            self.hideActivityIndicator()
+                        }
+                    })
+                }catch{
+                    print("Error adding document!")
+                }
+            }
+        }
     }
     
 
@@ -123,4 +264,19 @@ class PhotoSwipeViewController: UIViewController {
     }
     */
 
+}
+
+
+extension PhotoSwipeViewController:ProgressSpinnerDelegate{
+    func showActivityIndicator(){
+        addChild(childProgressView)
+        view.addSubview(childProgressView.view)
+        childProgressView.didMove(toParent: self)
+    }
+    
+    func hideActivityIndicator(){
+        childProgressView.willMove(toParent: nil)
+        childProgressView.view.removeFromSuperview()
+        childProgressView.removeFromParent()
+    }
 }

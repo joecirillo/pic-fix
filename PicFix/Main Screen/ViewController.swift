@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 
 class ViewController: UIViewController {
     let mainScreenView = MainScreenView()
@@ -15,6 +16,7 @@ class ViewController: UIViewController {
     let database = Firestore.firestore()
     var handleAuth: AuthStateDidChangeListenerHandle?
     var currentUser: FirebaseAuth.User?
+    let storage = Storage.storage()
     
     override func loadView(){
         view = mainScreenView

@@ -4,12 +4,13 @@
 //
 //  Created by Christopher on 11/29/23.
 //
+import Foundation
 import UIKit
 
 struct Cards {
-    var image: UIImage?
+    var image: String?
       
-    init(image: UIImage?) {
+    init(image: String?) {
         self.image = image
     }
 }

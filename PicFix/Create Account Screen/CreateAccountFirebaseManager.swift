@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
 
 extension CreateAccountViewController{
     
@@ -18,10 +19,13 @@ extension CreateAccountViewController{
                 if error == nil{
                     self.setNameOfTheUserInFirebaseAuth(name: name, email: email)
                     print("no error")
+                } else {
+                    print(error)
                 }
             })
         }
     }
+    
     
     func setNameOfTheUserInFirebaseAuth(name: String, email: String){
         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
