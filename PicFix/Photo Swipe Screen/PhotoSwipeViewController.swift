@@ -72,7 +72,12 @@ class PhotoSwipeViewController: UIViewController {
     }
     
     @objc func onRecentlyDeletedButtonTapped() {
+        let photoGridViewController = PhotoGridViewController()
+        let album = Album(albumName: "recentlyDeleted")
+        photoGridViewController.album = album
+        photoGridViewController.currentUser = currentUser
         
+        navigationController?.pushViewController(photoGridViewController, animated: true)
     }
     
     func setupStackContainer() {
