@@ -38,7 +38,7 @@ class CreateAccountViewController: UIViewController {
         //MARK: creating a new user on Firebase...
         if (doPasswordsMatch()) {
             showActivityIndicator()
-            registerUser()
+            uploadProfilePhotoToStorage()
         }
         else {
             // implement error alert here

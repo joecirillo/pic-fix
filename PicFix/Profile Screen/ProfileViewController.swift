@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import FirebaseAuth
+
 
 class ProfileViewController: UIViewController {
     
     let profileScreen = ProfileView()
+    
+    var handleAuth: AuthStateDidChangeListenerHandle?
+    var currentUser: FirebaseAuth.User?
     
     let notificationCenter = NotificationCenter.default
 
@@ -27,11 +32,45 @@ class ProfileViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = customBarButtonItem
         
+        profileScreen.logOutButton.addTarget(self, action: #selector(onLogoutButtonTapped), for: .touchUpInside)
+        
         notificationCenter.addObserver(
             self,
             selector: #selector(notificationReceivedForTextChanged(notification:)),
             name: Notification.Name("textFromSecondScreen"),
             object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //MARK: handling if the Authentication state is changed (sign in, sign out, register)...
+        handleAuth = Auth.auth().addStateDidChangeListener{ auth, user in
+            if user == nil{
+               //codes omitted...
+                print("aaaaaaaaaaaaa")
+            }else{
+                //codes omitted...
+                print("wheohwfeoiewf")
+                //MARK: setting the profile photo...
+                if let url = self.currentUser?.photoURL{
+                    print("hi")
+                    self.profileScreen.contactPhoto.loadRemoteImage(from: url)
+                }
+                
+                //codes omitted...
+                
+            }
+        }
+    }
+    
+    @objc func onLogoutButtonTapped() {
+        do {
+            try Auth.auth().signOut()
+            navigationController?.popToRootViewController(animated: true)
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
     }
     
     @objc func onEditButtonTapped() {

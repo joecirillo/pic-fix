@@ -326,6 +326,7 @@
 				D80D345A2B068F6800D385F4 /* AppDelegate.swift */,
 				839382552B21BA280006B69C /* Configs.swift */,
 				D80D345C2B068F6800D385F4 /* SceneDelegate.swift */,
+				8393824B2B1BDF1B0006B69C /* ImageViewUtils.swift */,
 				D848259D2B0BCBAD004DB2C3 /* Main Screen */,
 				D8D111BA2B1512B2001B2FD9 /* Profile Screen */,
 				D85970B72B16AD90005CFD38 /* Edit Profile Screen */,
@@ -341,7 +342,6 @@
 				D80D34652B068F6C00D385F4 /* LaunchScreen.storyboard */,
 				D80D34682B068F6C00D385F4 /* Info.plist */,
 				D84825902B0BC88C004DB2C3 /* GoogleService-Info.plist */,
-				8393824B2B1BDF1B0006B69C /* ImageViewUtils.swift */,
 			);
 			path = PicFix;
 			sourceTree = "<group>";
