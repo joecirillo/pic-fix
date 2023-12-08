@@ -176,9 +176,9 @@ class SwipeCardView: UIView {
             }else if card.center.x < -40 {
                 delegate?.swipeDidEnd(on: card, image: nil)
                 notificationCenter.post(
-                            name: Notification.Name("albumSelected"),
+                            name: Notification.Name("albumsSelected"),
                             object: "",
-                            userInfo: ["image": (dataSource?.image)!, "name": "recentlyDeleted"])
+                            userInfo: ["image": (dataSource?.image)!, "albumNames": ["Recently Deleted"]])
                 //sendToRecentlyDeleted(image: (dataSource?.image)!)
                 UIView.animate(withDuration: 0.2) {
                     card.center = CGPoint(x: centerOfParentContainer.x + point.x - 200, y: centerOfParentContainer.y + point.y + 75)

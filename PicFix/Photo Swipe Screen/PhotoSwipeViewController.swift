@@ -73,7 +73,7 @@ class PhotoSwipeViewController: UIViewController {
     
     @objc func onRecentlyDeletedButtonTapped() {
         let photoGridViewController = PhotoGridViewController()
-        let album = Album(albumName: "recentlyDeleted")
+        let album = Album(albumName: "Recently Deleted")
         photoGridViewController.album = album
         photoGridViewController.currentUser = currentUser
         
@@ -237,8 +237,8 @@ class PhotoSwipeViewController: UIViewController {
     @objc func notificationReceivedForAlbumsSelected(notification: Notification){
         let db = Firestore.firestore()
 
-        var albumImage = notification.userInfo!["image"]
-        let albumNames = notification.userInfo!["name"]
+        let albumImage = notification.userInfo!["image"]
+        let albumNames = notification.userInfo!["albumNames"]
 
         if let albums = albumNames as? [String], let filePath = albumImage as? String {
             for album in albums {
