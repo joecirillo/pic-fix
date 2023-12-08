@@ -11,10 +11,8 @@ import FirebaseFirestoreSwift
 struct Album: Codable {
     @DocumentID var id: String?
     var albumName: String?
-    var images: [String]?
     
-    init(albumName: String?, images: [String]?) {
+    init(albumName: String?) {
         self.albumName = albumName
-        self.images = images
     }
 }

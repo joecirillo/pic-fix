@@ -26,11 +26,13 @@ class ViewController: UIViewController {
         handleAuth = Auth.auth().addStateDidChangeListener{ auth, user in
             if user == nil{
                 //MARK: not signed in...
-                self.currentUser = nil
+                //self.currentUser = nil
                 self.mainScreenView.logInButton.addTarget(self, action: #selector(self.onLogInButtonTapped), for: .touchUpInside)
                 self.mainScreenView.signUpButton.addTarget(self, action: #selector(self.onSignUpButtonTapped), for: .touchUpInside)
             } else {
+                self.currentUser = user
                 let photoSwipeViewController = PhotoSwipeViewController()
+                photoSwipeViewController.currentUser = self.currentUser
                 self.navigationController?.pushViewController(photoSwipeViewController, animated: true)
             }
         }

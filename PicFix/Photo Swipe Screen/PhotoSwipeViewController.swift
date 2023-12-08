@@ -18,7 +18,6 @@ class PhotoSwipeViewController: UIViewController {
     let database = Firestore.firestore()
     var cardViewData = [Cards]()
     var cardImages = [String]()
-    //var filePaths = [FilePath]() //MARK: might not need this
     var stackContainer:StackContainerView!
     let notificationCenter = NotificationCenter.default
     let childProgressView = ProgressSpinnerViewController()
@@ -67,7 +66,9 @@ class PhotoSwipeViewController: UIViewController {
     }
     
     @objc func onAlbumsButtonTapped() {
-        
+        let albumsTableViewController = AlbumsTableViewController()
+        albumsTableViewController.currentUser = self.currentUser
+        navigationController?.pushViewController(albumsTableViewController, animated: true)
     }
     
     @objc func onRecentlyDeletedButtonTapped() {
@@ -231,13 +232,12 @@ class PhotoSwipeViewController: UIViewController {
     @objc func notificationReceivedForAlbumsSelected(notification: Notification){
         let db = Firestore.firestore()
 
-        var albumUser = notification.userInfo!["user"]
         var albumImage = notification.userInfo!["image"]
-        var albumNames = notification.userInfo!["name"]
+        let albumNames = notification.userInfo!["name"]
 
         if let albums = albumNames as? [String], let filePath = albumImage as? String {
             for album in albums {
-                let collectionFilePaths = db.collection("users").document(albumUser as! String).collection("albums").document(album).collection("filePaths")
+                let collectionFilePaths = db.collection("users").document((currentUser?.email)!).collection("albums").document(album).collection("filePaths")
                 showActivityIndicator()
                 do{
                     try collectionFilePaths.addDocument(from: filePath, completion: {(error) in

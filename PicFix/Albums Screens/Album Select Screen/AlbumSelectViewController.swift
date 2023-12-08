@@ -34,6 +34,9 @@ class AlbumSelectViewController: UIViewController {
             target: self,
             action: #selector(onDoneBarButtonTapped)
         )
+        self.albumSelectScreen.floatingButtonNewAlbum.isEnabled = true
+        self.albumSelectScreen.floatingButtonNewAlbum.isHidden = false
+
         
         navigationItem.rightBarButtonItems = [barText]
         self.database.collection("users")
@@ -54,7 +57,15 @@ class AlbumSelectViewController: UIViewController {
                 self.albumSelectScreen.tableViewAlbumSelect.reloadData()
             }
         })
+        albumSelectScreen.floatingButtonNewAlbum.addTarget(self, action: #selector(newAlbumButtonTapped), for: .touchUpInside)
+        view.bringSubviewToFront(albumSelectScreen.floatingButtonNewAlbum)
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func newAlbumButtonTapped(){
+        let createAlbumViewController = CreateAlbumViewController()
+        createAlbumViewController.currentUser = self.currentUser
+        navigationController?.pushViewController(createAlbumViewController, animated: true)
     }
     
     @objc func onDoneBarButtonTapped() {
@@ -68,7 +79,7 @@ class AlbumSelectViewController: UIViewController {
                             notificationCenter.post(
                                         name: Notification.Name("albumsSelected"),
                                         object: "",
-                                        userInfo: ["user": user.email!,"image": addImage!, "albumNames": addNames])
+                                        userInfo: ["image": addImage!, "albumNames": addNames])
                         }
                     }
                 }

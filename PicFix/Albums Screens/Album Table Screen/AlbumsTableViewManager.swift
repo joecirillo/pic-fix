@@ -10,20 +10,16 @@ import UIKit
 import FirebaseCore
 import FirebaseFirestore
 
-extension AlbumSelectViewController: UITableViewDelegate, UITableViewDataSource{
+extension AlbumsTableViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return albumsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let db = Firestore.firestore()
+        //let db = Firestore.firestore()
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: Configs.tableViewAlbumsID, for: indexPath) as! AlbumSelectTableViewCell
-        let checkBox = CheckBox()
-        checkBox.albumName = albumsList[indexPath.row].albumName
-        checkBox.translatesAutoresizingMaskIntoConstraints = false
+        let cell = tableView.dequeueReusableCell(withIdentifier: Configs.tableViewAlbumsID, for: indexPath) as! AlbumsTableViewCell
         cell.labelAlbumName.text = albumsList[indexPath.row].albumName
-        cell.wrapperCellView.addSubview(checkBox)
         return cell
     }
 }

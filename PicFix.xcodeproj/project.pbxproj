@@ -26,6 +26,15 @@
 		8393825A2B21BF870006B69C /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382592B21BF870006B69C /* CheckBox.swift */; };
 		8393825D2B21C2C70006B69C /* AlbumSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8393825C2B21C2C70006B69C /* AlbumSelectViewController.swift */; };
 		839382602B21C2EE0006B69C /* AlbumSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8393825F2B21C2EE0006B69C /* AlbumSelectView.swift */; };
+		839382642B2280380006B69C /* AlbumsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382632B2280380006B69C /* AlbumsView.swift */; };
+		839382662B2280600006B69C /* AlbumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382652B2280600006B69C /* AlbumsTableViewController.swift */; };
+		8393826A2B2280CF0006B69C /* PhotoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382692B2280CF0006B69C /* PhotoGridView.swift */; };
+		8393826C2B2280F30006B69C /* PhotoGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8393826B2B2280F30006B69C /* PhotoGridViewController.swift */; };
+		8393826E2B22B7000006B69C /* AlbumsTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8393826D2B22B7000006B69C /* AlbumsTableViewManager.swift */; };
+		839382712B22B7600006B69C /* AlbumsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382702B22B7600006B69C /* AlbumsTableViewCell.swift */; };
+		839382742B22BA090006B69C /* CreateAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382732B22BA090006B69C /* CreateAlbumView.swift */; };
+		839382772B22BA280006B69C /* CreateAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382762B22BA280006B69C /* CreateAlbumViewController.swift */; };
+		839382792B22BAF80006B69C /* CreateAlbumAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382782B22BAF80006B69C /* CreateAlbumAlerts.swift */; };
 		D80D345B2B068F6800D385F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80D345A2B068F6800D385F4 /* AppDelegate.swift */; };
 		D80D345D2B068F6800D385F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80D345C2B068F6800D385F4 /* SceneDelegate.swift */; };
 		D80D345F2B068F6800D385F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80D345E2B068F6800D385F4 /* ViewController.swift */; };
@@ -98,6 +107,15 @@
 		839382592B21BF870006B69C /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		8393825C2B21C2C70006B69C /* AlbumSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSelectViewController.swift; sourceTree = "<group>"; };
 		8393825F2B21C2EE0006B69C /* AlbumSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSelectView.swift; sourceTree = "<group>"; };
+		839382632B2280380006B69C /* AlbumsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsView.swift; sourceTree = "<group>"; };
+		839382652B2280600006B69C /* AlbumsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsTableViewController.swift; sourceTree = "<group>"; };
+		839382692B2280CF0006B69C /* PhotoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridView.swift; sourceTree = "<group>"; };
+		8393826B2B2280F30006B69C /* PhotoGridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridViewController.swift; sourceTree = "<group>"; };
+		8393826D2B22B7000006B69C /* AlbumsTableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsTableViewManager.swift; sourceTree = "<group>"; };
+		839382702B22B7600006B69C /* AlbumsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsTableViewCell.swift; sourceTree = "<group>"; };
+		839382732B22BA090006B69C /* CreateAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumView.swift; sourceTree = "<group>"; };
+		839382762B22BA280006B69C /* CreateAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumViewController.swift; sourceTree = "<group>"; };
+		839382782B22BAF80006B69C /* CreateAlbumAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumAlerts.swift; sourceTree = "<group>"; };
 		D80D34572B068F6800D385F4 /* PicFix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicFix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D80D345A2B068F6800D385F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D80D345C2B068F6800D385F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -215,8 +233,8 @@
 			children = (
 				8393825E2B21C2CB0006B69C /* Views */,
 				839382532B21B9E40006B69C /* AlbumSelectTableViewManager.swift */,
-				839382592B21BF870006B69C /* CheckBox.swift */,
 				8393825C2B21C2C70006B69C /* AlbumSelectViewController.swift */,
+				839382592B21BF870006B69C /* CheckBox.swift */,
 			);
 			path = "Album Select Screen";
 			sourceTree = "<group>";
@@ -228,6 +246,62 @@
 				8393825F2B21C2EE0006B69C /* AlbumSelectView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		839382612B227FD00006B69C /* Album Table Screen */ = {
+			isa = PBXGroup;
+			children = (
+				839382622B227FE50006B69C /* Views */,
+				8393826D2B22B7000006B69C /* AlbumsTableViewManager.swift */,
+				839382652B2280600006B69C /* AlbumsTableViewController.swift */,
+			);
+			path = "Album Table Screen";
+			sourceTree = "<group>";
+		};
+		839382622B227FE50006B69C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				839382632B2280380006B69C /* AlbumsView.swift */,
+				839382702B22B7600006B69C /* AlbumsTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		839382672B2280AC0006B69C /* Photo Grid Screen */ = {
+			isa = PBXGroup;
+			children = (
+				839382682B2280BE0006B69C /* Views */,
+				8393826B2B2280F30006B69C /* PhotoGridViewController.swift */,
+			);
+			path = "Photo Grid Screen";
+			sourceTree = "<group>";
+		};
+		839382682B2280BE0006B69C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				839382692B2280CF0006B69C /* PhotoGridView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		839382722B22B9C10006B69C /* Albums Screens */ = {
+			isa = PBXGroup;
+			children = (
+				839382752B22BA0F0006B69C /* Create Album Screen */,
+				839382612B227FD00006B69C /* Album Table Screen */,
+				8393825B2B21C27D0006B69C /* Album Select Screen */,
+			);
+			path = "Albums Screens";
+			sourceTree = "<group>";
+		};
+		839382752B22BA0F0006B69C /* Create Album Screen */ = {
+			isa = PBXGroup;
+			children = (
+				839382732B22BA090006B69C /* CreateAlbumView.swift */,
+				839382762B22BA280006B69C /* CreateAlbumViewController.swift */,
+				839382782B22BAF80006B69C /* CreateAlbumAlerts.swift */,
+			);
+			path = "Create Album Screen";
 			sourceTree = "<group>";
 		};
 		D80D344E2B068F6800D385F4 = {
@@ -257,7 +331,8 @@
 				D85970B72B16AD90005CFD38 /* Edit Profile Screen */,
 				D848259E2B0BCBC1004DB2C3 /* Create Account Screen */,
 				832071FF2B15A69F006C3499 /* Photo Swipe Screen */,
-				8393825B2B21C27D0006B69C /* Album Select Screen */,
+				839382672B2280AC0006B69C /* Photo Grid Screen */,
+				839382722B22B9C10006B69C /* Albums Screens */,
 				D848259C2B0BCB76004DB2C3 /* Progress Indicator */,
 				839382412B190B030006B69C /* Swipe Container */,
 				8393823E2B190AF30006B69C /* Data Models */,
@@ -447,6 +522,8 @@
 			files = (
 				839382482B198EE30006B69C /* PhotoUrl.swift in Sources */,
 				8393824A2B198F3C0006B69C /* PhotoSwipeFirestoreManager.swift in Sources */,
+				839382792B22BAF80006B69C /* CreateAlbumAlerts.swift in Sources */,
+				839382712B22B7600006B69C /* AlbumsTableViewCell.swift in Sources */,
 				D85970B62B16ACDD005CFD38 /* EditProfileView.swift in Sources */,
 				D8D111B72B151296001B2FD9 /* ProfileView.swift in Sources */,
 				D84825592B0BC5F1004DB2C3 /* CreateAccountViewController.swift in Sources */,
@@ -458,12 +535,19 @@
 				8393825D2B21C2C70006B69C /* AlbumSelectViewController.swift in Sources */,
 				D84825932B0BC8F7004DB2C3 /* CreateAccountScreenView.swift in Sources */,
 				839382562B21BA280006B69C /* Configs.swift in Sources */,
+				8393826A2B2280CF0006B69C /* PhotoGridView.swift in Sources */,
 				D80D345B2B068F6800D385F4 /* AppDelegate.swift in Sources */,
+				839382662B2280600006B69C /* AlbumsTableViewController.swift in Sources */,
 				8393824C2B1BDF1C0006B69C /* ImageViewUtils.swift in Sources */,
 				832072012B15A6D0006C3499 /* PhotoSwipeViewController.swift in Sources */,
 				8393824F2B21B4700006B69C /* AlbumSelectTableViewCell.swift in Sources */,
 				839382352B1908BE0006B69C /* SwipeCardView.swift in Sources */,
+				839382642B2280380006B69C /* AlbumsView.swift in Sources */,
+				8393826E2B22B7000006B69C /* AlbumsTableViewManager.swift in Sources */,
 				D80D345D2B068F6800D385F4 /* SceneDelegate.swift in Sources */,
+				839382742B22BA090006B69C /* CreateAlbumView.swift in Sources */,
+				8393826C2B2280F30006B69C /* PhotoGridViewController.swift in Sources */,
+				839382772B22BA280006B69C /* CreateAlbumViewController.swift in Sources */,
 				839382542B21B9E40006B69C /* AlbumSelectTableViewManager.swift in Sources */,
 				839382452B190B0F0006B69C /* SwipeContainerManager.swift in Sources */,
 				839382442B190B0F0006B69C /* SwipeContainerDelegate.swift in Sources */,

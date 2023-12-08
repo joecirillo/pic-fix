@@ -28,7 +28,7 @@ extension ViewController {
             if error == nil{
                 print("successfully logged in")
                 self.hideActivityIndicator()
-                let photoSwipeViewController = PhotoSwipeViewController()
+                //let photoSwipeViewController = PhotoSwipeViewController()
                 //MARK: duplicated push
                 //self.navigationController?.pushViewController(photoSwipeViewController, animated: true)
             }else{

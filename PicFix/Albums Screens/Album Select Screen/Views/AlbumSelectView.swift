@@ -10,6 +10,7 @@ import UIKit
 class AlbumSelectView: UIView {
     var labelText: UILabel!
     var tableViewAlbumSelect: UITableView!
+    var floatingButtonNewAlbum: UIButton!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -17,6 +18,7 @@ class AlbumSelectView: UIView {
         
         setupLabelText()
         setupTableViewAlbumSelect()
+        setupFloatingButtonNewAlbum()
         initConstraints()
     }
     
@@ -34,6 +36,22 @@ class AlbumSelectView: UIView {
         self.addSubview(tableViewAlbumSelect)
     }
     
+    func setupFloatingButtonNewAlbum(){
+        floatingButtonNewAlbum = UIButton(type: .system)
+        floatingButtonNewAlbum.setTitle("", for: .normal)
+        floatingButtonNewAlbum.setImage(UIImage(systemName: "rectangle.stack.fill.badge.plus")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        floatingButtonNewAlbum.contentHorizontalAlignment = .fill
+        floatingButtonNewAlbum.contentVerticalAlignment = .fill
+        floatingButtonNewAlbum.imageView?.contentMode = .scaleAspectFit
+        floatingButtonNewAlbum.layer.cornerRadius = 16
+        floatingButtonNewAlbum.imageView?.layer.shadowOffset = .zero
+        floatingButtonNewAlbum.imageView?.layer.shadowRadius = 0.8
+        floatingButtonNewAlbum.imageView?.layer.shadowOpacity = 0.7
+        floatingButtonNewAlbum.imageView?.clipsToBounds = true
+        floatingButtonNewAlbum.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(floatingButtonNewAlbum)
+    }
+    
     //MARK: setting up constraints...
     func initConstraints(){
         NSLayoutConstraint.activate([
@@ -44,6 +62,11 @@ class AlbumSelectView: UIView {
             tableViewAlbumSelect.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -8),
             tableViewAlbumSelect.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             tableViewAlbumSelect.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            
+            floatingButtonNewAlbum.widthAnchor.constraint(equalToConstant: 48),
+            floatingButtonNewAlbum.heightAnchor.constraint(equalToConstant: 48),
+            floatingButtonNewAlbum.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            floatingButtonNewAlbum.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
         ])
     }
     

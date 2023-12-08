@@ -26,18 +26,68 @@ class SwipeCardView: UIView {
     var dataSource: Cards? {
         didSet {
             guard let filePath = dataSource?.image else { return }
-            imageView.image = getImageForPath(filePath)
+            imageView.image = getImageForFilePath(filePath: filePath)
         }
     }
     
-    func getImageForPath(_ filePath: String) -> UIImage? {
-        if let image = UIImage(contentsOfFile: filePath) {
-            return image
-        } else {
-            print("Error loading image from file path: \(filePath)")
-            return UIImage(named: "AppIcon")
+    func getImageForFilePath(filePath: String) -> UIImage? {
+        var cardImage: UIImage?
+        getPHAsset(from: filePath) { asset in
+            if let asset = asset {
+                let requestOptions = PHImageRequestOptions()
+                requestOptions.isSynchronous = true
+                PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 300, height: 400),
+                                                      contentMode: .aspectFill, options: requestOptions) { image, _ in
+                    cardImage = image
+                }
+                
+                if let pickedImage = cardImage {
+                    // upload reference to firebase
+                    //imagePath = filePath
+                    cardImage = pickedImage
+                } else {
+                    //imagePath = ""
+                    print("did not get filepath")
+                    cardImage = UIImage(named: "AppIcon")
+                    print("error: file path not found")
+                }
+            } else {
+                print("PHAsset not found for file path: \(filePath)")
+            }
         }
+        return cardImage
     }
+    
+    func getPHAsset(from filePath: String, completion: @escaping (PHAsset?) -> Void) {
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+
+        let fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+
+        let filename = (filePath as NSString).lastPathComponent
+
+        for index in 0..<fetchResult.count {
+            let asset = fetchResult.object(at: index)
+            let assetResources = PHAssetResource.assetResources(for: asset)
+
+            for resource in assetResources {
+                if resource.originalFilename == filename {
+                    completion(asset)
+                    return
+                }
+            }
+        }
+        completion(nil)
+    }
+    
+//    func getImageForPath(_ filePath: String) -> UIImage? {
+//        if let image = UIImage(contentsOfFile: filePath) {
+//            return image
+//        } else {
+//            print("Error loading image from file path: \(filePath)")
+//            return UIImage(named: "AppIcon")
+//        }
+//    }
     
     //MARK: - Init
      override init(frame: CGRect) {
