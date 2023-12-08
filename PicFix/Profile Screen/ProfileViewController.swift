@@ -48,10 +48,10 @@ class ProfileViewController: UIViewController {
         handleAuth = Auth.auth().addStateDidChangeListener{ auth, user in
             if user == nil{
                //codes omitted...
-                print("aaaaaaaaaaaaa")
             }else{
                 //codes omitted...
-                print("wheohwfeoiewf")
+                self.currentUser = user
+
                 //MARK: setting the profile photo...
                 if let url = self.currentUser?.photoURL{
                     print("hi")
