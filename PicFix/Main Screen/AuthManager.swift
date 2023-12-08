@@ -24,7 +24,11 @@ extension ViewController {
     func signInToFirebase(email: String, password: String){
         showActivityIndicator()
         //MARK: authenticating the user...
-        Auth.auth().signIn(withEmail: email, password: password, completion: {(result, error) in
+//        Auth.auth().signIn(withEmail: email, password: password, completion: {(result, error) in
+        Auth.auth().signIn(withEmail: email, password: password, completion: { [weak self] (result, error) in
+            guard let self = self else { return }
+            //MARK: can you hide the progress indicator here?
+            self.hideActivityIndicator()
             if error == nil{
                 print("successfully logged in")
                 self.hideActivityIndicator()
@@ -32,9 +36,8 @@ extension ViewController {
                 //MARK: duplicated push
                 //self.navigationController?.pushViewController(photoSwipeViewController, animated: true)
             }else{
-                self.hideActivityIndicator()
-                print(error)
-                //MARK: alert that no user found or password wrong...
+                print("Error signing in: \(error?.localizedDescription ?? "Unknown error")")
+                showIncorrectErrorAlert()
             }
             
         })
@@ -47,6 +50,11 @@ extension ViewController {
     
     func showEmptyErrorAlert(){
         let alert = UIAlertController(title: "Error", message: "The inputs cannot be empty!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true)
+    }
+    func showIncorrectErrorAlert(){
+        let alert = UIAlertController(title: "Error", message: "Password or Email Incorrect", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         self.present(alert, animated: true)
     }

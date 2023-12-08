@@ -15,6 +15,7 @@ class CreateAccountScreenView: UIView {
     var passwordTextField = UITextField()
     var passwordConfirmTextField = UITextField()
     var createAccountButton = UIButton()
+    var isPasswordVisible = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -77,7 +78,19 @@ class CreateAccountScreenView: UIView {
         passwordTextField.layer.borderColor = UIColor.gray.cgColor
         passwordTextField.layer.cornerRadius = 10.0
         passwordTextField.layer.borderWidth = 1.0
+        passwordTextField.textContentType = .password
+        passwordTextField.isSecureTextEntry = true
         scrollView.addSubview(passwordTextField)
+        
+        // Add a button to toggle the password visibility
+        let toggleButton = UIButton(type: .custom)
+        toggleButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+        toggleButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .selected)
+        toggleButton.addTarget(self, action: #selector(togglePasswordVisibility(_:)), for: .touchUpInside)
+        toggleButton.tintColor = UIColor.gray
+        toggleButton.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.rightView = toggleButton
+        passwordTextField.rightViewMode = .always
     }
     func passwordConfirm(){
         passwordConfirmTextField = UITextField()
@@ -87,8 +100,35 @@ class CreateAccountScreenView: UIView {
         passwordConfirmTextField.layer.borderColor = UIColor.gray.cgColor
         passwordConfirmTextField.layer.cornerRadius = 10.0
         passwordConfirmTextField.layer.borderWidth = 1.0
+        passwordConfirmTextField.textContentType = .password
+        passwordConfirmTextField.isSecureTextEntry = true
         scrollView.addSubview(passwordConfirmTextField)
+        
+        // Add a button to toggle the password visibility
+        let toggleButton = UIButton(type: .custom)
+        toggleButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+        toggleButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .selected)
+        toggleButton.addTarget(self, action: #selector(togglePasswordVisibility(_:)), for: .touchUpInside)
+        toggleButton.tintColor = UIColor.gray
+        toggleButton.translatesAutoresizingMaskIntoConstraints = false
+        passwordConfirmTextField.rightView = toggleButton
+        passwordConfirmTextField.rightViewMode = .always
     }
+    
+    @objc func togglePasswordVisibility(_ sender: UIButton) {
+        isPasswordVisible.toggle()
+
+        if isPasswordVisible {
+            passwordTextField.isSecureTextEntry = false
+            passwordConfirmTextField.isSecureTextEntry = false
+        } else {
+            passwordTextField.isSecureTextEntry = true
+            passwordConfirmTextField.isSecureTextEntry = true
+        }
+
+        sender.isSelected = isPasswordVisible
+    }
+    
     func setupCreateAccountButton(){
         createAccountButton = UIButton()
         createAccountButton.setTitle("Create Account", for: .normal)

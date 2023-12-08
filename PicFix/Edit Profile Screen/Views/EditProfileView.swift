@@ -21,16 +21,14 @@ class EditProfileView: UIView {
         
         self.backgroundColor = .white
         
-        setupName()
-        setupProfilePhotoButton()
-        setupEmail()
-        setupPhotosDeletedLabel()
-        setupMegabytesSavedLabel()
-        
+        editProfilePhotoButton()
+        editName()
+        editEmail()
+
         initConstraints()
     }
     
-    func setupProfilePhotoButton() {
+    func editProfilePhotoButton() {
         profilePhotoButton = UIButton(type: .system)
         profilePhotoButton.setTitle("", for: .normal)
         profilePhotoButton.setImage(UIImage(systemName: "person.crop.circle"), for: .normal)
@@ -42,38 +40,21 @@ class EditProfileView: UIView {
         self.addSubview(profilePhotoButton)
     }
     
-    func setupName(){
+    func editName(){
         name = UITextField()
-        name.text = "Hi"
+        name.text = "Some Name"
         name.font = UIFont.boldSystemFont(ofSize: 30)
         name.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(name)
     }
     
-    func setupEmail(){
+    func editEmail(){
         email = UILabel()
-        email.text = "Hi"
+        email.text = "Some Email"
         email.font = email.font.withSize(20)
         email.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(email)
     }
-    
-    func setupPhotosDeletedLabel(){
-        photosDeletedLabel = UILabel()
-        photosDeletedLabel.text = "Hi"
-        photosDeletedLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        photosDeletedLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(photosDeletedLabel)
-    }
-    
-    func setupMegabytesSavedLabel(){
-        megabytesSavedLabel = UILabel()
-        megabytesSavedLabel.text = "Hi"
-        megabytesSavedLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        megabytesSavedLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(megabytesSavedLabel)
-    }
-    
 
     
     func initConstraints(){
@@ -88,12 +69,6 @@ class EditProfileView: UIView {
             
             email.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 24),
             email.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-            
-            photosDeletedLabel.topAnchor.constraint(equalTo: email.bottomAnchor, constant: 24),
-            photosDeletedLabel.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-            
-            megabytesSavedLabel.topAnchor.constraint(equalTo: photosDeletedLabel.bottomAnchor, constant: 24),
-            megabytesSavedLabel.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             
         ])
     }

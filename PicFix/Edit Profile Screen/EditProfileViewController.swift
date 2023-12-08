@@ -11,7 +11,6 @@ import PhotosUI
 class EditProfileViewController: UIViewController {
     
     let editProfileScreen = EditProfileView()
-    
     let notificationCenter = NotificationCenter.default
     
     var pickedPhoto:UIImage?
