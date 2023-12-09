@@ -6,17 +6,26 @@
 //
 
 import UIKit
+import PhotosUI
 import FirebaseAuth
+import FirebaseFirestore
+import FirebaseStorage
 
 
 class ProfileViewController: UIViewController {
     
+    let childProgressView = ProgressSpinnerViewController()
+    
     let profileScreen = ProfileView()
+    
+    let storage = Storage.storage()
     
     var handleAuth: AuthStateDidChangeListenerHandle?
     var currentUser: FirebaseAuth.User?
     
     let notificationCenter = NotificationCenter.default
+    
+    var pickedPhoto:UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +65,8 @@ class ProfileViewController: UIViewController {
                 if let url = self.currentUser?.photoURL{
                     print("hi")
                     self.profileScreen.contactPhoto.loadRemoteImage(from: url)
+                    self.profileScreen.name.text = user?.displayName
+                    self.profileScreen.email.text = user?.email
                 }
                 
                 //codes omitted...
@@ -79,8 +90,14 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func notificationReceivedForTextChanged(notification: Notification){
-        profileScreen.contactPhoto.image = (notification.object as! UIImage)
+    //    profileScreen.contactPhoto.image = (notification.object as! UIImage)
+        self.pickedPhoto = (notification.object as! UIImage)
+        uploadProfilePhotoToStorage()
+        
+        
     }
+    
+    
     
 
     /*

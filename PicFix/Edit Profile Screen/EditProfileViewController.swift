@@ -7,11 +7,15 @@
 
 import UIKit
 import PhotosUI
+import FirebaseAuth
 
 class EditProfileViewController: UIViewController {
     
     let editProfileScreen = EditProfileView()
     let notificationCenter = NotificationCenter.default
+    
+    var handleAuth: AuthStateDidChangeListenerHandle?
+    var currentUser: FirebaseAuth.User?
     
     var pickedPhoto:UIImage?
 
@@ -30,6 +34,28 @@ class EditProfileViewController: UIViewController {
         )
         
         navigationItem.rightBarButtonItem = customBarButtonItem
+        
+        //MARK: handling if the Authentication state is changed (sign in, sign out, register)...
+        handleAuth = Auth.auth().addStateDidChangeListener{ auth, user in
+            if user == nil{
+               //codes omitted...
+            }else{
+                //codes omitted...
+                self.currentUser = user
+
+                //MARK: setting the profile photo...
+                if let url = self.currentUser?.photoURL{
+                    print("hi")
+                    let profileScreen = ProfileView()
+
+                    self.editProfileScreen.name.text = user?.displayName
+                    self.editProfileScreen.email.text = user?.email
+                }
+                
+                //codes omitted...
+                
+            }
+        }
                 
     }
 
