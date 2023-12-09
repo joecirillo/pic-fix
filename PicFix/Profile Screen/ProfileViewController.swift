@@ -6,12 +6,26 @@
 //
 
 import UIKit
+import PhotosUI
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseStorage
+
 
 class ProfileViewController: UIViewController {
     
+    let childProgressView = ProgressSpinnerViewController()
+    
     let profileScreen = ProfileView()
     
+    let storage = Storage.storage()
+    
+    var handleAuth: AuthStateDidChangeListenerHandle?
+    var currentUser: FirebaseAuth.User?
+    
     let notificationCenter = NotificationCenter.default
+    
+    var pickedPhoto:UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +41,47 @@ class ProfileViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = customBarButtonItem
         
+        profileScreen.logOutButton.addTarget(self, action: #selector(onLogoutButtonTapped), for: .touchUpInside)
+        
         notificationCenter.addObserver(
             self,
             selector: #selector(notificationReceivedForTextChanged(notification:)),
             name: Notification.Name("textFromSecondScreen"),
             object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //MARK: handling if the Authentication state is changed (sign in, sign out, register)...
+        handleAuth = Auth.auth().addStateDidChangeListener{ auth, user in
+            if user == nil{
+               //codes omitted...
+            }else{
+                //codes omitted...
+                self.currentUser = user
+
+                //MARK: setting the profile photo...
+                if let url = self.currentUser?.photoURL{
+                    print("hi")
+                    self.profileScreen.contactPhoto.loadRemoteImage(from: url)
+                    self.profileScreen.name.text = user?.displayName
+                    self.profileScreen.email.text = user?.email
+                }
+                
+                //codes omitted...
+                
+            }
+        }
+    }
+    
+    @objc func onLogoutButtonTapped() {
+        do {
+            try Auth.auth().signOut()
+            navigationController?.popToRootViewController(animated: true)
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
     }
     
     @objc func onEditButtonTapped() {
@@ -40,8 +90,14 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func notificationReceivedForTextChanged(notification: Notification){
-        profileScreen.contactPhoto.image = (notification.object as! UIImage)
+    //    profileScreen.contactPhoto.image = (notification.object as! UIImage)
+        self.pickedPhoto = (notification.object as! UIImage)
+        uploadProfilePhotoToStorage()
+        
+        
     }
+    
+    
     
 
     /*

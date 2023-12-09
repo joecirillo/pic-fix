@@ -85,6 +85,8 @@
 		D85970B62B16ACDD005CFD38 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85970B52B16ACDD005CFD38 /* EditProfileView.swift */; };
 		D8D111B72B151296001B2FD9 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D111B62B151296001B2FD9 /* ProfileView.swift */; };
 		D8D111B92B1512AD001B2FD9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D111B82B1512AD001B2FD9 /* ProfileViewController.swift */; };
+		D8EA338B2B23EFAC0028052C /* ProfileFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EA338A2B23EFAC0028052C /* ProfileFirebaseManager.swift */; };
+		D8EA338D2B23F43D0028052C /* ProfileProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EA338C2B23F43D0028052C /* ProfileProgressIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +138,8 @@
 		D85970B52B16ACDD005CFD38 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		D8D111B62B151296001B2FD9 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		D8D111B82B1512AD001B2FD9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D8EA338A2B23EFAC0028052C /* ProfileFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFirebaseManager.swift; sourceTree = "<group>"; };
+		D8EA338C2B23F43D0028052C /* ProfileProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProgressIndicator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,6 +330,7 @@
 				D80D345A2B068F6800D385F4 /* AppDelegate.swift */,
 				839382552B21BA280006B69C /* Configs.swift */,
 				D80D345C2B068F6800D385F4 /* SceneDelegate.swift */,
+				8393824B2B1BDF1B0006B69C /* ImageViewUtils.swift */,
 				D848259D2B0BCBAD004DB2C3 /* Main Screen */,
 				D8D111BA2B1512B2001B2FD9 /* Profile Screen */,
 				D85970B72B16AD90005CFD38 /* Edit Profile Screen */,
@@ -341,7 +346,6 @@
 				D80D34652B068F6C00D385F4 /* LaunchScreen.storyboard */,
 				D80D34682B068F6C00D385F4 /* Info.plist */,
 				D84825902B0BC88C004DB2C3 /* GoogleService-Info.plist */,
-				8393824B2B1BDF1B0006B69C /* ImageViewUtils.swift */,
 			);
 			path = PicFix;
 			sourceTree = "<group>";
@@ -405,10 +409,20 @@
 		D8D111BA2B1512B2001B2FD9 /* Profile Screen */ = {
 			isa = PBXGroup;
 			children = (
+				D8EA338E2B23F6950028052C /* Views */,
+				D8EA338A2B23EFAC0028052C /* ProfileFirebaseManager.swift */,
 				D8D111B82B1512AD001B2FD9 /* ProfileViewController.swift */,
-				D8D111B62B151296001B2FD9 /* ProfileView.swift */,
+				D8EA338C2B23F43D0028052C /* ProfileProgressIndicator.swift */,
 			);
 			path = "Profile Screen";
+			sourceTree = "<group>";
+		};
+		D8EA338E2B23F6950028052C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D8D111B62B151296001B2FD9 /* ProfileView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -524,6 +538,7 @@
 				8393824A2B198F3C0006B69C /* PhotoSwipeFirestoreManager.swift in Sources */,
 				839382792B22BAF80006B69C /* CreateAlbumAlerts.swift in Sources */,
 				839382712B22B7600006B69C /* AlbumsTableViewCell.swift in Sources */,
+				D8EA338D2B23F43D0028052C /* ProfileProgressIndicator.swift in Sources */,
 				D85970B62B16ACDD005CFD38 /* EditProfileView.swift in Sources */,
 				D8D111B72B151296001B2FD9 /* ProfileView.swift in Sources */,
 				D84825592B0BC5F1004DB2C3 /* CreateAccountViewController.swift in Sources */,
@@ -549,6 +564,7 @@
 				8393826C2B2280F30006B69C /* PhotoGridViewController.swift in Sources */,
 				839382772B22BA280006B69C /* CreateAlbumViewController.swift in Sources */,
 				839382542B21B9E40006B69C /* AlbumSelectTableViewManager.swift in Sources */,
+				D8EA338B2B23EFAC0028052C /* ProfileFirebaseManager.swift in Sources */,
 				839382452B190B0F0006B69C /* SwipeContainerManager.swift in Sources */,
 				839382442B190B0F0006B69C /* SwipeContainerDelegate.swift in Sources */,
 				D8D111B92B1512AD001B2FD9 /* ProfileViewController.swift in Sources */,

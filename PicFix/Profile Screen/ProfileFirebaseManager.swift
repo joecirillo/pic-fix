@@ -1,15 +1,16 @@
 //
-//  CreateAccountFirebaseManager.swift
+//  ProfileFirebaseManager.swift
 //  PicFix
 //
-//  Created by Joe Cirillo on 11/20/23.
+//  Created by Joe Cirillo on 12/8/23.
 //
 
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
-extension CreateAccountViewController{
+extension ProfileViewController {
+
     
     func uploadProfilePhotoToStorage(){
         var profilePhotoURL:URL?
@@ -26,32 +27,19 @@ extension CreateAccountViewController{
                         imageRef.downloadURL(completion: {(url, error) in
                             if error == nil{
                                 profilePhotoURL = url
-                                self.registerUser(photoURL: profilePhotoURL)
+                                self.showActivityIndicator()
+                                self.setPhotoOfTheUserInFirebaseAuth(photoURL: profilePhotoURL)
                             }
                         })
                     }
                 })
             }
-        }else{
-            registerUser(photoURL: profilePhotoURL)
         }
     }
     
-    func registerUser(photoURL: URL?){
-        if let name = createAccountScreenView.userNameTextField.text,
-           let email = createAccountScreenView.userEmailTextField.text,
-           let password = createAccountScreenView.passwordTextField.text{
-            Auth.auth().createUser(withEmail: email, password: password, completion: {result, error in
-                if error == nil{
-                    self.setNameAndPhotoOfTheUserInFirebaseAuth(name: name, email: email, photoURL: photoURL)
-                }
-            })
-        }
-    }
     
-    func setNameAndPhotoOfTheUserInFirebaseAuth(name: String, email: String, photoURL: URL?){
+    func setPhotoOfTheUserInFirebaseAuth(photoURL: URL?){
         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-        changeRequest?.displayName = name
         changeRequest?.photoURL = photoURL
         
         print("\(photoURL)")
@@ -64,5 +52,5 @@ extension CreateAccountViewController{
             }
         })
     }
-
+    
 }

@@ -14,7 +14,7 @@ class ProgressSpinnerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.color = .orange
+        activityIndicator.color = .green
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.startAnimating()
         
