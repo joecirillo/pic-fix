@@ -45,7 +45,7 @@ class ProfileView: UIView {
     
     func setupName(){
         name = UILabel()
-        name.text = "Hi"
+        name.text = "AName"
         name.font = UIFont.boldSystemFont(ofSize: 30)
         name.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(name)
@@ -53,10 +53,14 @@ class ProfileView: UIView {
     
     func setupEmail(){
         email = UILabel()
-        email.text = "Hi"
+        email.text = "AEmail"
         email.font = email.font.withSize(20)
         email.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(email)
+    }
+    
+    func updateEmailLabel(with email: String) {
+        self.email.text = email
     }
     
     func setupPhotosDeletedLabel(){

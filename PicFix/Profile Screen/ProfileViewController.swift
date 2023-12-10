@@ -41,6 +41,10 @@ class ProfileViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = customBarButtonItem
         
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardOnTap))
+            tapRecognizer.cancelsTouchesInView = false
+            view.addGestureRecognizer(tapRecognizer)
+        
         profileScreen.logOutButton.addTarget(self, action: #selector(onLogoutButtonTapped), for: .touchUpInside)
         
         notificationCenter.addObserver(
@@ -50,20 +54,29 @@ class ProfileViewController: UIViewController {
             object: nil)
     }
     
+    @objc func hideKeyboardOnTap(){
+        view.endEditing(true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         //MARK: handling if the Authentication state is changed (sign in, sign out, register)...
         handleAuth = Auth.auth().addStateDidChangeListener{ auth, user in
             if user == nil{
-               //codes omitted...
+               // this would be if the user is signed out which is not a possible flow
             }else{
                 //codes omitted...
                 self.currentUser = user
+//                
+//                if let userEmail = self.currentUser?.email {
+//                    self.profileScreen.updateEmailLabel(with: userEmail)
+//                    print("Email Should Appear")
+//                }
 
                 //MARK: setting the profile photo...
                 if let url = self.currentUser?.photoURL{
-                    print("hi")
+                    print("Photo Should Appear")
                     self.profileScreen.contactPhoto.loadRemoteImage(from: url)
                     self.profileScreen.name.text = user?.displayName
                     self.profileScreen.email.text = user?.email
@@ -93,8 +106,6 @@ class ProfileViewController: UIViewController {
     //    profileScreen.contactPhoto.image = (notification.object as! UIImage)
         self.pickedPhoto = (notification.object as! UIImage)
         uploadProfilePhotoToStorage()
-        
-        
     }
     
     

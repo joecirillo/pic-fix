@@ -44,6 +44,14 @@ class ViewController: UIViewController {
         title = "PicFix"
         
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardOnTap))
+            tapRecognizer.cancelsTouchesInView = false
+            view.addGestureRecognizer(tapRecognizer)
+    }
+    
+    @objc func hideKeyboardOnTap(){
+        view.endEditing(true)
     }
     
     override var shouldAutorotate: Bool {

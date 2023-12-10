@@ -11,9 +11,7 @@ class EditProfileView: UIView {
 
     var profilePhotoButton: UIButton!
     var name: UITextField!
-    var email: UILabel!
-    var photosDeletedLabel: UILabel!
-    var megabytesSavedLabel: UILabel!
+    var email: UITextField!
 
 
     override init(frame: CGRect) {
@@ -49,9 +47,9 @@ class EditProfileView: UIView {
     }
     
     func editEmail(){
-        email = UILabel()
+        email = UITextField()
         email.text = "Some Email"
-        email.font = email.font.withSize(20)
+        email.font = email.font?.withSize(20)
         email.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(email)
     }

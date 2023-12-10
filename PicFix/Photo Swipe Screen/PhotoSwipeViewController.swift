@@ -54,7 +54,7 @@ class PhotoSwipeViewController: UIViewController {
         loadCardViewData()
         stackContainer.dataSource = self
         stackContainer.delegate = self
-        setupRightBarButton()
+//        setupRightBarButton()
         
         // Do any additional setup after loading the view.
         notificationCenter.addObserver(
@@ -67,17 +67,17 @@ class PhotoSwipeViewController: UIViewController {
 
     }
     
-    func setupRightBarButton(){
-        //MARK: user is logged in...
-        let barIcon = UIBarButtonItem(
-            image: UIImage(systemName: "rectangle.portrait.and.arrow.forward"),
-            style: .plain,
-            target: self,
-            action: #selector(onLogOutBarButtonTapped)
-        )
-        
-        navigationItem.rightBarButtonItems = [barIcon]
-    }
+//    func setupRightBarButton(){
+//        //MARK: user is logged in...
+//        let barIcon = UIBarButtonItem(
+//            image: UIImage(systemName: "rectangle.portrait.and.arrow.forward"),
+//            style: .plain,
+//            target: self,
+//            action: #selector(onLogOutBarButtonTapped)
+//        )
+//        
+//        navigationItem.rightBarButtonItems = [barIcon]
+//    }
 
     
     @objc func onAlbumsButtonTapped() {
@@ -273,21 +273,24 @@ class PhotoSwipeViewController: UIViewController {
         }
     }
     
-    @objc func onLogOutBarButtonTapped(){
-        let logoutAlert = UIAlertController(title: "Logging out!", message: "Are you sure want to log out?",
-            preferredStyle: .actionSheet)
-        logoutAlert.addAction(UIAlertAction(title: "Yes, log out!", style: .default, handler: {(_) in
-                do{
-                    try Auth.auth().signOut()
-                }catch{
-                    print("Error occured!")
-                }
-            })
-        )
-        logoutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        
-        self.present(logoutAlert, animated: true)
-    }
+//    @objc func onLogOutBarButtonTapped(){
+//        let logoutAlert = UIAlertController(title: "Logging out!", message: "Are you sure want to log out?",
+//            preferredStyle: .actionSheet)
+//        logoutAlert.addAction(UIAlertAction(title: "Yes, log out!", style: .default, handler: {(_) in
+//                do{
+//                    try Auth.auth().signOut()
+//                    if let navigationController = self.navigationController {
+//                        navigationController.popToRootViewController(animated: true)
+//                    }
+//                }catch{
+//                    print("Error occured!")
+//                }
+//            })
+//        )
+//        logoutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+//        
+//        self.present(logoutAlert, animated: true)
+//    }
 }
 
 
