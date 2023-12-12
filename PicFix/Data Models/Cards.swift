@@ -8,9 +8,9 @@ import Foundation
 import UIKit
 
 struct Cards {
-    var image: String?
+    var image: UIImage?
       
-    init(image: String?) {
+    init(image: UIImage?) {
         self.image = image
     }
 }

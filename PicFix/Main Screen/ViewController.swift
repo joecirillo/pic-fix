@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     var handleAuth: AuthStateDidChangeListenerHandle?
     var currentUser: FirebaseAuth.User?
     let storage = Storage.storage()
+    //var urls = [URL]()
     
     override func loadView(){
         view = mainScreenView
@@ -33,6 +34,8 @@ class ViewController: UIViewController {
                 self.currentUser = user
                 let photoSwipeViewController = PhotoSwipeViewController()
                 photoSwipeViewController.currentUser = self.currentUser
+                //photoSwipeViewController.loadImages(count: 6)
+                //photoSwipeViewController.urls = self.urls
                 self.navigationController?.pushViewController(photoSwipeViewController, animated: true)
             }
         }

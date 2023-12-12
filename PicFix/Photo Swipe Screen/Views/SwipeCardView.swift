@@ -25,8 +25,8 @@ class SwipeCardView: UIView {
     
     var dataSource: Cards? {
         didSet {
-            guard let filePath = dataSource?.image else { return }
-            imageView.image = getImageForFilePath(filePath: filePath)
+            guard let image = dataSource?.image else { return }
+            imageView.image = image //getImageForFilePath(filePath: filePath)
         }
     }
     
@@ -53,6 +53,8 @@ class SwipeCardView: UIView {
                 }
             } else {
                 print("PHAsset not found for file path: \(filePath)")
+                cardImage = UIImage(named: "AppIcon")
+
             }
         }
         return cardImage
@@ -176,8 +178,8 @@ class SwipeCardView: UIView {
             }else if card.center.x < -40 {
                 delegate?.swipeDidEnd(on: card, image: nil)
                 notificationCenter.post(
-                            name: Notification.Name("albumsSelected"),
-                            object: "",
+                    name: .albumsSelected,
+                    object: (dataSource?.image)!,
                             userInfo: ["image": (dataSource?.image)!, "albumNames": ["Recently Deleted"]])
                 //sendToRecentlyDeleted(image: (dataSource?.image)!)
                 UIView.animate(withDuration: 0.2) {
@@ -264,11 +266,6 @@ class SwipeCardView: UIView {
                 }
             }
         }
-    }
-    
-    func addToAlbum(image: UIImage, album: String) {
-        let collectionFilePaths = self.database.collection("photoUrl")
-        
     }
 
     

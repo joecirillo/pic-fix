@@ -84,7 +84,7 @@ class StackContainerView: UIView, SwipeCardsDelegate {
         cardViews = []
     }
     
-    func swipeDidEnd(on view: SwipeCardView, image: String?) {
+    func swipeDidEnd(on view: SwipeCardView, image: UIImage?) {
         guard let datasource = dataSource else { return }
         view.removeFromSuperview()
         if remainingcards < 4 {

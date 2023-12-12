@@ -14,7 +14,7 @@ class AlbumSelectViewController: UIViewController {
     let albumSelectScreen = AlbumSelectView()
     var currentUser:FirebaseAuth.User?
     let database = Firestore.firestore()
-    var addImage: String?
+    var addImage: UIImage?
     var addNames = [String]()
     var albumsList = [Album]()
     let notificationCenter = NotificationCenter.default
@@ -77,8 +77,8 @@ class AlbumSelectViewController: UIViewController {
                     if checked {
                         if let user = currentUser {
                             notificationCenter.post(
-                                        name: Notification.Name("albumsSelected"),
-                                        object: "",
+                                name: .albumsSelected,
+                                        object: nil,
                                         userInfo: ["image": addImage!, "albumNames": addNames])
                         }
                     }

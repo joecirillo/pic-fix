@@ -81,6 +81,8 @@ class PhotoGridViewController: UIViewController, UICollectionViewDataSource, UIC
                     print("error: file path not found")
                 }
             } else {
+                cardImage = UIImage(named: "AppIcon")
+                print("actually here")
                 print("PHAsset not found for file path: \(filePath)")
             }
         }
