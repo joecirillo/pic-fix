@@ -30,57 +30,80 @@ class SwipeCardView: UIView {
         }
     }
     
-    func getImageForFilePath(filePath: String) -> UIImage? {
-        var cardImage: UIImage?
-        getPHAsset(from: filePath) { asset in
-            if let asset = asset {
-                let requestOptions = PHImageRequestOptions()
-                requestOptions.isSynchronous = true
-                PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 300, height: 400),
-                                                      contentMode: .aspectFill, options: requestOptions) { image, _ in
-                    cardImage = image
-                }
-                
-                if let pickedImage = cardImage {
-                    // upload reference to firebase
-                    //imagePath = filePath
-                    cardImage = pickedImage
-                } else {
-                    //imagePath = ""
-                    print("did not get filepath")
-                    cardImage = UIImage(named: "AppIcon")
-                    print("error: file path not found")
-                }
-            } else {
-                print("PHAsset not found for file path: \(filePath)")
-                cardImage = UIImage(named: "AppIcon")
-
-            }
-        }
-        return cardImage
-    }
+//    func getImageForUrl(imageUrl: URL, completion: @escaping (UIImage?) -> Void) {
+//        var cardImage: UIImage?
+//        let dispatchGroup = DispatchGroup()
+//        dispatchGroup.enter()
+//
+//        DispatchQueue.global().async { [weak self] in
+//            defer {
+//                dispatchGroup.leave()
+//            }
+//
+//            if let data = try? Data(contentsOf: imageUrl) {
+//                if let image = UIImage(data: data) {
+//                    DispatchQueue.main.async {
+//                        cardImage = image
+//                    }
+//                }
+//            }
+//        }
+//        dispatchGroup.notify(queue: .main) {
+//                completion(cardImage)
+//        }
+//    }
     
-    func getPHAsset(from filePath: String, completion: @escaping (PHAsset?) -> Void) {
-        let fetchOptions = PHFetchOptions()
-        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
-
-        let fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
-
-        let filename = (filePath as NSString).lastPathComponent
-
-        for index in 0..<fetchResult.count {
-            let asset = fetchResult.object(at: index)
-            let assetResources = PHAssetResource.assetResources(for: asset)
-
-            for resource in assetResources {
-                if resource.originalFilename == filename {
-                    completion(asset)
-                    return
-                }
-            }
-        }
-        completion(nil)
-    }
+//    func getImageForFilePath(filePath: String) -> UIImage? {
+//        var cardImage: UIImage?
+//        getPHAsset(from: filePath) { asset in
+//            if let asset = asset {
+//                let requestOptions = PHImageRequestOptions()
+//                requestOptions.isSynchronous = true
+//                PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 300, height: 400),
+//                                                      contentMode: .aspectFill, options: requestOptions) { image, _ in
+//                    cardImage = image
+//                }
+//                
+//                if let pickedImage = cardImage {
+//                    // upload reference to firebase
+//                    //imagePath = filePath
+//                    cardImage = pickedImage
+//                } else {
+//                    //imagePath = ""
+//                    print("did not get filepath")
+//                    cardImage = UIImage(named: "AppIcon")
+//                    print("error: file path not found")
+//                }
+//            } else {
+//                print("PHAsset not found for file path: \(filePath)")
+//                cardImage = UIImage(named: "AppIcon")
+//
+//            }
+//        }
+//        return cardImage
+//    }
+//    
+//    func getPHAsset(from filePath: String, completion: @escaping (PHAsset?) -> Void) {
+//        let fetchOptions = PHFetchOptions()
+//        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+//
+//        let fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+//
+//        let filename = (filePath as NSString).lastPathComponent
+//
+//        for index in 0..<fetchResult.count {
+//            let asset = fetchResult.object(at: index)
+//            let assetResources = PHAssetResource.assetResources(for: asset)
+//
+//            for resource in assetResources {
+//                if resource.originalFilename == filename {
+//                    completion(asset)
+//                    return
+//                }
+//            }
+//        }
+//        completion(nil)
+//    }
     
 //    func getImageForPath(_ filePath: String) -> UIImage? {
 //        if let image = UIImage(contentsOfFile: filePath) {
@@ -168,7 +191,7 @@ class SwipeCardView: UIView {
         switch sender.state {
         case .ended:
             if (card.center.x) > 370 {
-                delegate?.swipeDidEnd(on: card, image: nil)
+                delegate?.swipeDidEnd(on: card, imageUrl: nil)
                 UIView.animate(withDuration: 0.2) {
                     card.center = CGPoint(x: centerOfParentContainer.x + point.x + 200, y: centerOfParentContainer.y + point.y + 75)
                     card.alpha = 0
@@ -176,11 +199,11 @@ class SwipeCardView: UIView {
                 }
                 return
             }else if card.center.x < -40 {
-                delegate?.swipeDidEnd(on: card, image: nil)
+                delegate?.swipeDidEnd(on: card, imageUrl: nil)
                 notificationCenter.post(
                     name: .albumsSelected,
                     object: (dataSource?.image)!,
-                            userInfo: ["image": (dataSource?.image)!, "albumNames": ["Recently Deleted"]])
+                            userInfo: ["imageUrl": (dataSource?.imageUrl)!, "albumNames": ["recentlyDeleted"]])
                 //sendToRecentlyDeleted(image: (dataSource?.image)!)
                 UIView.animate(withDuration: 0.2) {
                     card.center = CGPoint(x: centerOfParentContainer.x + point.x - 200, y: centerOfParentContainer.y + point.y + 75)
@@ -189,7 +212,7 @@ class SwipeCardView: UIView {
                 }
                 return
             } else if card.center.y < 50 {
-                delegate?.swipeDidEnd(on: card, image: (dataSource?.image)!)
+                delegate?.swipeDidEnd(on: card, imageUrl: (dataSource?.imageUrl)!)
                 //MARK: insert add to collection functionality
                 //delegate.sendToAlbumSelect(
                 

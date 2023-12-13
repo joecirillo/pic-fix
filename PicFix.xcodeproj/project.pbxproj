@@ -16,7 +16,7 @@
 		839382402B190AFE0006B69C /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8393823F2B190AFE0006B69C /* Cards.swift */; };
 		839382442B190B0F0006B69C /* SwipeContainerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382422B190B0F0006B69C /* SwipeContainerDelegate.swift */; };
 		839382452B190B0F0006B69C /* SwipeContainerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382432B190B0F0006B69C /* SwipeContainerManager.swift */; };
-		839382482B198EE30006B69C /* ImageRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382472B198EE30006B69C /* ImageRef.swift */; };
+		839382482B198EE30006B69C /* ImageUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382472B198EE30006B69C /* ImageUrl.swift */; };
 		8393824A2B198F3C0006B69C /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382492B198F3C0006B69C /* FirestoreManager.swift */; };
 		8393824C2B1BDF1C0006B69C /* ImageViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8393824B2B1BDF1B0006B69C /* ImageViewUtils.swift */; };
 		8393824F2B21B4700006B69C /* AlbumSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8393824E2B21B4700006B69C /* AlbumSelectTableViewCell.swift */; };
@@ -98,7 +98,7 @@
 		8393823F2B190AFE0006B69C /* Cards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		839382422B190B0F0006B69C /* SwipeContainerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeContainerDelegate.swift; sourceTree = "<group>"; };
 		839382432B190B0F0006B69C /* SwipeContainerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeContainerManager.swift; sourceTree = "<group>"; };
-		839382472B198EE30006B69C /* ImageRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRef.swift; sourceTree = "<group>"; };
+		839382472B198EE30006B69C /* ImageUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUrl.swift; sourceTree = "<group>"; };
 		839382492B198F3C0006B69C /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		8393824B2B1BDF1B0006B69C /* ImageViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewUtils.swift; sourceTree = "<group>"; };
 		8393824E2B21B4700006B69C /* AlbumSelectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSelectTableViewCell.swift; sourceTree = "<group>"; };
@@ -215,7 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				8393823F2B190AFE0006B69C /* Cards.swift */,
-				839382472B198EE30006B69C /* ImageRef.swift */,
+				839382472B198EE30006B69C /* ImageUrl.swift */,
 				839382572B21BC090006B69C /* Album.swift */,
 			);
 			path = "Data Models";
@@ -523,7 +523,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				839382482B198EE30006B69C /* ImageRef.swift in Sources */,
+				839382482B198EE30006B69C /* ImageUrl.swift in Sources */,
 				8393824A2B198F3C0006B69C /* FirestoreManager.swift in Sources */,
 				839382792B22BAF80006B69C /* CreateAlbumAlerts.swift in Sources */,
 				839382712B22B7600006B69C /* AlbumsTableViewCell.swift in Sources */,

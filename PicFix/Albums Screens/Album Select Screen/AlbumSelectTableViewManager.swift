@@ -23,7 +23,8 @@ extension AlbumSelectViewController: UITableViewDelegate, UITableViewDataSource{
         checkBox.albumName = albumsList[indexPath.row].albumName
         checkBox.translatesAutoresizingMaskIntoConstraints = false
         cell.labelAlbumName.text = albumsList[indexPath.row].albumName
-        cell.wrapperCellView.addSubview(checkBox)
+        self.albumSelectScreen.tableViewAlbumSelect.reloadData()
+        //cell.wrapperCellView.addSubview(checkBox)
         return cell
     }
 }

@@ -84,7 +84,7 @@ class StackContainerView: UIView, SwipeCardsDelegate {
         cardViews = []
     }
     
-    func swipeDidEnd(on view: SwipeCardView, image: UIImage?) {
+    func swipeDidEnd(on view: SwipeCardView, imageUrl: URL?) {
         guard let datasource = dataSource else { return }
         view.removeFromSuperview()
         if remainingcards < 4 {
@@ -110,8 +110,8 @@ class StackContainerView: UIView, SwipeCardsDelegate {
                 })
             }
         }
-        if let albumImage = image {
-            self.delegate?.openAlbumSelector(image: albumImage)
+        if let url = imageUrl {
+            self.delegate?.openAlbumSelector(imageUrl: url)
         }
         //self.delegate.
     }

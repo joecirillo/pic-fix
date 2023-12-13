@@ -17,7 +17,7 @@ class AlbumSelectTableViewCell: UITableViewCell {
         
         setupWrapperCellView()
         setupLabelAlbumName()
-        //setupCheckBox()
+        setupCheckBox()
         
         initConstraints()
     }
@@ -42,13 +42,13 @@ class AlbumSelectTableViewCell: UITableViewCell {
         wrapperCellView.addSubview(labelAlbumName)
     }
     
-//    func setupCheckBox() {
-//        checkBox = CheckBox()
-//        checkBox.albumName = labelAlbumName.text
-//        checkBox.translatesAutoresizingMaskIntoConstraints = false
-//
-//        wrapperCellView.addSubview(checkBox)
-//    }
+    func setupCheckBox() {
+        checkBox = CheckBox()
+        checkBox.albumName = labelAlbumName.text
+        checkBox.translatesAutoresizingMaskIntoConstraints = false
+
+        wrapperCellView.addSubview(checkBox)
+    }
     
     func initConstraints(){
         NSLayoutConstraint.activate([
@@ -61,10 +61,10 @@ class AlbumSelectTableViewCell: UITableViewCell {
             labelAlbumName.leadingAnchor.constraint(equalTo: wrapperCellView.leadingAnchor, constant: 16),
             labelAlbumName.heightAnchor.constraint(equalToConstant: 20),
             labelAlbumName.widthAnchor.constraint(lessThanOrEqualTo: wrapperCellView.widthAnchor),
+            labelAlbumName.trailingAnchor.constraint(equalTo: checkBox.leadingAnchor, constant: -8),
             
             checkBox.topAnchor.constraint(equalTo: labelAlbumName.topAnchor),
-            checkBox.leadingAnchor.constraint(equalTo: labelAlbumName.trailingAnchor),
-            checkBox.trailingAnchor.constraint(equalTo: wrapperCellView.trailingAnchor, constant: 8),
+            checkBox.trailingAnchor.constraint(equalTo: wrapperCellView.trailingAnchor, constant: -10),
 
             wrapperCellView.heightAnchor.constraint(equalToConstant: 72)
         ])

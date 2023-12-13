@@ -22,7 +22,6 @@ class AlbumsTableViewController: UIViewController {
 
     override func loadView() {
         view = albumsScreen
-        //navigationItem.hidesBackButton = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +71,7 @@ class AlbumsTableViewController: UIViewController {
         let details = self.albumsList[indexPath.row]
         let photoGridViewController = PhotoGridViewController()
         photoGridViewController.album = details
+        photoGridViewController.title = details.albumName
         photoGridViewController.currentUser = currentUser
         
         navigationController?.pushViewController(photoGridViewController, animated: true)
@@ -94,7 +94,7 @@ class AlbumsTableViewController: UIViewController {
         albumsScreen.tableViewAlbums.dataSource = self
         albumsScreen.tableViewAlbums.separatorStyle = .none
 
-        navigationItem.rightBarButtonItems = [barText]
+        navigationItem.backBarButtonItem = barText
         albumsScreen.floatingButtonNewAlbum.addTarget(self, action: #selector(newAlbumButtonTapped), for: .touchUpInside)
         view.bringSubviewToFront(albumsScreen.floatingButtonNewAlbum)
     }

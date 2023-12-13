@@ -9,8 +9,9 @@ import UIKit
 
 struct Cards {
     var image: UIImage?
-      
-    init(image: UIImage?) {
+    var imageUrl: URL?
+    init(image: UIImage?, imageUrl: URL?) {
         self.image = image
+        self.imageUrl = imageUrl
     }
 }

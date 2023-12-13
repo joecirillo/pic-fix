@@ -91,6 +91,7 @@ class PhotoSwipeViewController: UIViewController {
     @objc func onRecentlyDeletedButtonTapped() {
         let photoGridViewController = PhotoGridViewController()
         photoGridViewController.album = self.recentlyDeleted
+        photoGridViewController.title = "Recently Deleted"
         photoGridViewController.currentUser = currentUser
         
         navigationController?.pushViewController(photoGridViewController, animated: true)
@@ -117,7 +118,7 @@ class PhotoSwipeViewController: UIViewController {
     
     func loadImages(count: Int) {
         for i in 0...count {
-            getRandomImage { image in
+            getRandomImage { image, url in
                 // Use the image here
                 if let randomImage = image {
                     self.cardImages.append(randomImage)
@@ -126,7 +127,7 @@ class PhotoSwipeViewController: UIViewController {
                         self.stackContainer.remainingcards += 6
                         
                         for image in self.cardImages {
-                            let card = Cards(image: image)
+                            let card = Cards(image: image, imageUrl: url)
                             self.cardViewData.append(card)
                             if self.cardViewData.count == self.cardImages.count - 1 {
                                 self.stackContainer.reloadData()
@@ -150,12 +151,8 @@ class PhotoSwipeViewController: UIViewController {
         print("Card view data loaded successfully!")
     }
     
-    func getRandomImage(completion: @escaping (UIImage?) -> Void) {
-//        let randomIndex = Int.random(in: 0..<self.pickedImages.count)
+    func getRandomImage(completion: @escaping (UIImage?, URL?) -> Void) {
         var randomImage = UIImage(named: "AppIcon")//self.pickedImages[randomIndex]
-        // Reference to the storage folder where your images are stored
-        let imageRefs = database.collection("users").document((currentUser?.email)!).collection("imageRefs")
-        
         
         let randomIndex = Int.random(in: 0..<self.urls.count)
         let imageRef = self.urls[randomIndex]
@@ -176,13 +173,13 @@ class PhotoSwipeViewController: UIViewController {
             }
         }
         dispatchGroup.notify(queue: .main) {
-                completion(randomImage)
+                completion(randomImage, imageRef)
             }
     }
     
-    func openAlbumSelector(image: UIImage?) {
+    func openAlbumSelector(imageUrl: URL) {
         let albumSelectViewController = AlbumSelectViewController()
-        albumSelectViewController.addImage = image
+        albumSelectViewController.imageUrl = imageUrl
         albumSelectViewController.currentUser = self.currentUser
 
         navigationController?.pushViewController(albumSelectViewController, animated: true)
@@ -197,18 +194,21 @@ class PhotoSwipeViewController: UIViewController {
     @objc func notificationReceivedForAlbumsSelected(notification: Notification){
         let db = Firestore.firestore()
 
-        let albumImage = notification.userInfo!["image"]
+        let imageUrl = notification.userInfo!["imageUrl"]
         let albumNames = notification.userInfo!["albumNames"]
 
-        if let albums = albumNames as? [String], let image = albumImage as? String {
+        if let albums = albumNames as? [String], let url = imageUrl as? URL {
             for album in albums {
-                let collectionCardImages = db.collection("users").document((currentUser?.email)!).collection("albums").document(album).collection("cardImages")
+                let collectionCardImages = db.collection("users").document((currentUser?.email)!).collection("albums").document(album).collection("imageUrls")
                 showActivityIndicator()
-                let cardImage = ImageRef(imageRef: image)
+                let imageUrl = ImageUrl(imageUrl: url)
                 do{
-                    try collectionCardImages.addDocument(from: cardImage, completion: {(error) in
-                        if error == nil{
-                            self.navigationController?.popViewController(animated: true)
+                    try collectionCardImages.addDocument(from: imageUrl, completion: {(error) in
+                        if error == nil {
+                            if album != "recentlyDeleted" {
+                                self.navigationController?.popViewController(animated: true)
+
+                            }
                             self.hideActivityIndicator()
                         }
                     })
@@ -266,7 +266,7 @@ extension PhotoSwipeViewController:PHPickerViewControllerDelegate{
                             print("picked images")
                             self.pickedImages.append(uwImage)
 
-                            if self.pickedImages.count == 6 {
+                            if self.pickedImages.count >= 6 {
                                 self.notificationCenter.post(
                                     name: Notification.Name("uploadImages"),
                                     object: nil)

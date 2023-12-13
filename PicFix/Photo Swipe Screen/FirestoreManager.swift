@@ -79,8 +79,9 @@ extension PhotoSwipeViewController {
                         } else {
                             if let downloadURL = url {
                                 print(downloadURL)
+                                self.uploadUrl(url: downloadURL)
                                 self.urls.append(downloadURL)
-                                if self.urls.count == 6 {
+                                if self.urls.count >= 6 {
                                     self.notificationCenter.post(
                                         name: Notification.Name("imagesUploaded"),
                                         object: nil)
@@ -95,6 +96,23 @@ extension PhotoSwipeViewController {
                     print("Upload progress: \(percentComplete)%")
                 }
             }
+        }
+    }
+    
+    func uploadUrl(url: URL) {
+        let db = Firestore.firestore()
+        let collectionUrls = db.collection("users").document((self.currentUser?.email)!).collection("imageUrls")
+        let imageUrl = ImageUrl(imageUrl: url)
+        
+        do{
+            try collectionUrls.addDocument(from: imageUrl, completion: {(error) in
+                if error == nil{
+                    //self.navigationController?.popViewController(animated: true)
+                    self.hideActivityIndicator()
+                }
+            })
+        }catch{
+            print("Error adding document!")
         }
     }
 }
