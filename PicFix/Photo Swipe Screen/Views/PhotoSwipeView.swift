@@ -10,13 +10,15 @@ import UIKit
 class PhotoSwipeView: UIView {
     var albumsButton:UIButton!
     var recentlyDeletedButton:UIButton!
+    var uploadPhotosButton: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
-                
+    
         setupAlbumsButton()
         setupRecentlyDeletedButton()
+        //setupUploadPhotosButton()
 
         initConstraints()
     }

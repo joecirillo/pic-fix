@@ -16,8 +16,8 @@
 		839382402B190AFE0006B69C /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8393823F2B190AFE0006B69C /* Cards.swift */; };
 		839382442B190B0F0006B69C /* SwipeContainerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382422B190B0F0006B69C /* SwipeContainerDelegate.swift */; };
 		839382452B190B0F0006B69C /* SwipeContainerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382432B190B0F0006B69C /* SwipeContainerManager.swift */; };
-		839382482B198EE30006B69C /* PhotoUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382472B198EE30006B69C /* PhotoUrl.swift */; };
-		8393824A2B198F3C0006B69C /* PhotoSwipeFirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382492B198F3C0006B69C /* PhotoSwipeFirestoreManager.swift */; };
+		839382482B198EE30006B69C /* ImageUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382472B198EE30006B69C /* ImageUrl.swift */; };
+		8393824A2B198F3C0006B69C /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382492B198F3C0006B69C /* FirestoreManager.swift */; };
 		8393824C2B1BDF1C0006B69C /* ImageViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8393824B2B1BDF1B0006B69C /* ImageViewUtils.swift */; };
 		8393824F2B21B4700006B69C /* AlbumSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8393824E2B21B4700006B69C /* AlbumSelectTableViewCell.swift */; };
 		839382542B21B9E40006B69C /* AlbumSelectTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382532B21B9E40006B69C /* AlbumSelectTableViewManager.swift */; };
@@ -35,6 +35,7 @@
 		839382742B22BA090006B69C /* CreateAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382732B22BA090006B69C /* CreateAlbumView.swift */; };
 		839382772B22BA280006B69C /* CreateAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382762B22BA280006B69C /* CreateAlbumViewController.swift */; };
 		839382792B22BAF80006B69C /* CreateAlbumAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839382782B22BAF80006B69C /* CreateAlbumAlerts.swift */; };
+		8393827E2B22D9FA0006B69C /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8393827D2B22D9FA0006B69C /* NotificationNames.swift */; };
 		D80D345B2B068F6800D385F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80D345A2B068F6800D385F4 /* AppDelegate.swift */; };
 		D80D345D2B068F6800D385F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80D345C2B068F6800D385F4 /* SceneDelegate.swift */; };
 		D80D345F2B068F6800D385F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80D345E2B068F6800D385F4 /* ViewController.swift */; };
@@ -99,8 +100,8 @@
 		8393823F2B190AFE0006B69C /* Cards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		839382422B190B0F0006B69C /* SwipeContainerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeContainerDelegate.swift; sourceTree = "<group>"; };
 		839382432B190B0F0006B69C /* SwipeContainerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeContainerManager.swift; sourceTree = "<group>"; };
-		839382472B198EE30006B69C /* PhotoUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUrl.swift; sourceTree = "<group>"; };
-		839382492B198F3C0006B69C /* PhotoSwipeFirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSwipeFirestoreManager.swift; sourceTree = "<group>"; };
+		839382472B198EE30006B69C /* ImageUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUrl.swift; sourceTree = "<group>"; };
+		839382492B198F3C0006B69C /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		8393824B2B1BDF1B0006B69C /* ImageViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewUtils.swift; sourceTree = "<group>"; };
 		8393824E2B21B4700006B69C /* AlbumSelectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSelectTableViewCell.swift; sourceTree = "<group>"; };
 		839382532B21B9E40006B69C /* AlbumSelectTableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSelectTableViewManager.swift; sourceTree = "<group>"; };
@@ -118,6 +119,7 @@
 		839382732B22BA090006B69C /* CreateAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumView.swift; sourceTree = "<group>"; };
 		839382762B22BA280006B69C /* CreateAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumViewController.swift; sourceTree = "<group>"; };
 		839382782B22BAF80006B69C /* CreateAlbumAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumAlerts.swift; sourceTree = "<group>"; };
+		8393827D2B22D9FA0006B69C /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		D80D34572B068F6800D385F4 /* PicFix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicFix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D80D345A2B068F6800D385F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D80D345C2B068F6800D385F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -198,7 +200,7 @@
 			children = (
 				839382382B1908CD0006B69C /* Views */,
 				832072002B15A6D0006C3499 /* PhotoSwipeViewController.swift */,
-				839382492B198F3C0006B69C /* PhotoSwipeFirestoreManager.swift */,
+				839382492B198F3C0006B69C /* FirestoreManager.swift */,
 			);
 			path = "Photo Swipe Screen";
 			sourceTree = "<group>";
@@ -217,7 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				8393823F2B190AFE0006B69C /* Cards.swift */,
-				839382472B198EE30006B69C /* PhotoUrl.swift */,
+				839382472B198EE30006B69C /* ImageUrl.swift */,
 				839382572B21BC090006B69C /* Album.swift */,
 			);
 			path = "Data Models";
@@ -346,6 +348,8 @@
 				D80D34652B068F6C00D385F4 /* LaunchScreen.storyboard */,
 				D80D34682B068F6C00D385F4 /* Info.plist */,
 				D84825902B0BC88C004DB2C3 /* GoogleService-Info.plist */,
+				8393827D2B22D9FA0006B69C /* NotificationNames.swift */,
+
 			);
 			path = PicFix;
 			sourceTree = "<group>";
@@ -534,8 +538,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				839382482B198EE30006B69C /* PhotoUrl.swift in Sources */,
-				8393824A2B198F3C0006B69C /* PhotoSwipeFirestoreManager.swift in Sources */,
+				839382482B198EE30006B69C /* ImageUrl.swift in Sources */,
+				8393824A2B198F3C0006B69C /* FirestoreManager.swift in Sources */,
 				839382792B22BAF80006B69C /* CreateAlbumAlerts.swift in Sources */,
 				839382712B22B7600006B69C /* AlbumsTableViewCell.swift in Sources */,
 				D8EA338D2B23F43D0028052C /* ProfileProgressIndicator.swift in Sources */,
@@ -554,6 +558,7 @@
 				D80D345B2B068F6800D385F4 /* AppDelegate.swift in Sources */,
 				839382662B2280600006B69C /* AlbumsTableViewController.swift in Sources */,
 				8393824C2B1BDF1C0006B69C /* ImageViewUtils.swift in Sources */,
+				8393827E2B22D9FA0006B69C /* NotificationNames.swift in Sources */,
 				832072012B15A6D0006C3499 /* PhotoSwipeViewController.swift in Sources */,
 				8393824F2B21B4700006B69C /* AlbumSelectTableViewCell.swift in Sources */,
 				839382352B1908BE0006B69C /* SwipeCardView.swift in Sources */,

@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class PhotoGridViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-    var filePaths: [String]?
+    var imageUrls: [URL]?
     var album: Album? // The album whose photos are to be displayed
     let database = Firestore.firestore()
     private let photoGridView = PhotoGridView()
@@ -22,35 +22,48 @@ class PhotoGridViewController: UIViewController, UICollectionViewDataSource, UIC
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = album?.albumName
+
         photoGridView.collectionView.delegate = self
         photoGridView.collectionView.dataSource = self
     }
 
     // UICollectionViewDataSource methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let documentRef = database.collection("users").document((currentUser?.email)!).collection("albums").document((album?.albumName)!).collection("filePaths").addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
+        let documentRef = database.collection("users").document((currentUser?.email)!).collection("albums").document((album?.albumName)!).collection("imageUrls").addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
             if let documents = querySnapshot?.documents {
                 for document in documents {
                     do{
-                        let filePath = try document.data(as: String.self)
-                        self.filePaths!.append(filePath)
+                        let imageUrl = try document.data(as: URL.self)
+                        self.imageUrls!.append(imageUrl)
                     }catch{
                         print(error)
                     }
                 }
             }})
         
-        return filePaths?.count ?? 0
+        return imageUrls?.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? PhotoCell,
-              let image = filePaths?[indexPath.row] else {
+              let url = imageUrls?[indexPath.row] else {
             return UICollectionViewCell()
         }
-        let cellImage = getImageForFilePath(filePath: image)
-        cell.configure(with: cellImage!)
+        
+        //var cellImage = UIImage(named: "AppIcon")
+        getImageForUrl(imageUrl: url) { image in
+            // Use the image here
+            if let cellImage = image {
+                cell.configure(with: cellImage)
+                //once all images have been added
+
+                // Do something with the randomImage
+            } else {
+                // Handle the case when an image couldn't be retrieved
+            }
+        }
+        
+
         return cell
     }
 
@@ -59,32 +72,27 @@ class PhotoGridViewController: UIViewController, UICollectionViewDataSource, UIC
         // Handle photo selection, possibly show options to remove photo from album
     }
     
-    func getImageForFilePath(filePath: String) -> UIImage? {
+    func getImageForUrl(imageUrl: URL, completion: @escaping (UIImage?) -> Void) {
         var cardImage: UIImage?
-        getPHAsset(from: filePath) { asset in
-            if let asset = asset {
-                let requestOptions = PHImageRequestOptions()
-                requestOptions.isSynchronous = true
-                PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 300, height: 400),
-                                                      contentMode: .aspectFill, options: requestOptions) { image, _ in
-                    cardImage = image
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+
+        DispatchQueue.global().async { [weak self] in
+            defer {
+                dispatchGroup.leave()
+            }
+
+            if let data = try? Data(contentsOf: imageUrl) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        cardImage = image
+                    }
                 }
-                
-                if let pickedImage = cardImage {
-                    // upload reference to firebase
-                    //imagePath = filePath
-                    cardImage = pickedImage
-                } else {
-                    //imagePath = ""
-                    print("did not get filepath")
-                    cardImage = UIImage(named: "AppIcon")
-                    print("error: file path not found")
-                }
-            } else {
-                print("PHAsset not found for file path: \(filePath)")
             }
         }
-        return cardImage
+        dispatchGroup.notify(queue: .main) {
+                completion(cardImage)
+        }
     }
     
     func getPHAsset(from filePath: String, completion: @escaping (PHAsset?) -> Void) {

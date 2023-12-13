@@ -16,5 +16,5 @@ protocol SwipeCardsDataSource {
 }
 
 protocol SwipeCardsDelegate {
-    func swipeDidEnd(on view: SwipeCardView, image: String?)
+    func swipeDidEnd(on view: SwipeCardView, imageUrl: URL?)
 }

@@ -14,7 +14,7 @@ class AlbumSelectViewController: UIViewController {
     let albumSelectScreen = AlbumSelectView()
     var currentUser:FirebaseAuth.User?
     let database = Firestore.firestore()
-    var addImage: String?
+    var imageUrl: URL?
     var addNames = [String]()
     var albumsList = [Album]()
     let notificationCenter = NotificationCenter.default
@@ -22,23 +22,10 @@ class AlbumSelectViewController: UIViewController {
 
     override func loadView() {
         view = albumSelectScreen
-        //navigationItem.hidesBackButton = true
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        albumSelectScreen.labelText.text = "Select albums to add:"
-        let barText = UIBarButtonItem(
-            title: "Done",
-            style: .plain,
-            target: self,
-            action: #selector(onDoneBarButtonTapped)
-        )
-        self.albumSelectScreen.floatingButtonNewAlbum.isEnabled = true
-        self.albumSelectScreen.floatingButtonNewAlbum.isHidden = false
-
-        
-        navigationItem.rightBarButtonItems = [barText]
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.database.collection("users")
             .document((self.currentUser?.email?.lowercased())!)
             .collection("albums")
@@ -57,6 +44,26 @@ class AlbumSelectViewController: UIViewController {
                 self.albumSelectScreen.tableViewAlbumSelect.reloadData()
             }
         })
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        albumSelectScreen.labelText.text = "Select album:"
+        let barText = UIBarButtonItem(
+            title: "Done",
+            style: .done,
+            target: self,
+            action: #selector(onDoneBarButtonTapped)
+        )
+        self.albumSelectScreen.floatingButtonNewAlbum.isEnabled = true
+        self.albumSelectScreen.floatingButtonNewAlbum.isHidden = false
+
+        
+        navigationItem.rightBarButtonItems = [barText]
+        albumSelectScreen.tableViewAlbumSelect.delegate = self
+        albumSelectScreen.tableViewAlbumSelect.dataSource = self
+        albumSelectScreen.tableViewAlbumSelect.separatorStyle = .none
+        
         albumSelectScreen.floatingButtonNewAlbum.addTarget(self, action: #selector(newAlbumButtonTapped), for: .touchUpInside)
         view.bringSubviewToFront(albumSelectScreen.floatingButtonNewAlbum)
         // Do any additional setup after loading the view.
@@ -77,9 +84,9 @@ class AlbumSelectViewController: UIViewController {
                     if checked {
                         if let user = currentUser {
                             notificationCenter.post(
-                                        name: Notification.Name("albumsSelected"),
-                                        object: "",
-                                        userInfo: ["image": addImage!, "albumNames": addNames])
+                                name: .albumsSelected,
+                                        object: nil,
+                                userInfo: ["imageUrl": self.imageUrl!, "albumNames": self.addNames])
                         }
                     }
                 }

@@ -7,12 +7,13 @@
 
 import Foundation
 import FirebaseFirestoreSwift
+import UIKit
 
-struct PhotoUrl: Codable {
+struct ImageUrl: Codable {
     @DocumentID var id: String?
-    var photoUrl: String?
-      
-    init(photoUrl: String?) {
-        self.photoUrl = photoUrl
+    var imageUrl: URL?
+    
+    init(imageUrl: URL?) {
+        self.imageUrl = imageUrl
     }
 }
