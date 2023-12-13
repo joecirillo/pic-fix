@@ -30,7 +30,7 @@ class MainScreenView: UIView {
     
     func setupEmail(){
         emailTextField = UITextField()
-        emailTextField.placeholder = "Name"
+        emailTextField.placeholder = "Email"
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.borderStyle = .roundedRect
         emailTextField.layer.borderColor = UIColor.gray.cgColor
@@ -46,7 +46,23 @@ class MainScreenView: UIView {
         passwordTextField.layer.borderColor = UIColor.gray.cgColor
         passwordTextField.layer.cornerRadius = 10.0
         passwordTextField.layer.borderWidth = 1.0
+        passwordTextField.textContentType = .password
+        passwordTextField.isSecureTextEntry = true
         self.addSubview(passwordTextField)
+        
+        let toggleButton = UIButton(type: .custom)
+        toggleButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+        toggleButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .selected)
+        toggleButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+        toggleButton.tintColor = UIColor.gray
+        toggleButton.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.rightView = toggleButton
+        passwordTextField.rightViewMode = .always
+    }
+    
+    @objc func togglePasswordVisibility(sender: UIButton) {
+        passwordTextField.isSecureTextEntry.toggle()
+        sender.isSelected = !passwordTextField.isSecureTextEntry
     }
      
     func setupLogInButton(){

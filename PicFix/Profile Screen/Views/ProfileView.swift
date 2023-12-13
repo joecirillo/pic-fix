@@ -15,6 +15,7 @@ class ProfileView: UIView {
     var email: UILabel!
     var photosDeletedLabel: UILabel!
     var megabytesSavedLabel: UILabel!
+    var logOutButton: UIButton!
 
 
     override init(frame: CGRect) {
@@ -27,6 +28,7 @@ class ProfileView: UIView {
         setupEmail()
         setupPhotosDeletedLabel()
         setupMegabytesSavedLabel()
+        setupLogOutButton()
         
         initConstraints()
     }
@@ -73,6 +75,17 @@ class ProfileView: UIView {
         self.addSubview(megabytesSavedLabel)
     }
     
+    func setupLogOutButton(){
+        logOutButton = UIButton(type: .system)
+        logOutButton.setTitle("Log Out", for: .normal)
+        logOutButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        logOutButton.backgroundColor = UIColor.systemRed
+        logOutButton.setTitleColor(UIColor.white, for: .normal)
+        logOutButton.layer.cornerRadius = 10
+        logOutButton.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(logOutButton)
+    }
+    
 
     
     func initConstraints(){
@@ -94,6 +107,12 @@ class ProfileView: UIView {
             megabytesSavedLabel.topAnchor.constraint(equalTo: photosDeletedLabel.bottomAnchor, constant: 24),
             megabytesSavedLabel.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             
+            
+            // Constraints for Log Out Button
+            logOutButton.topAnchor.constraint(equalTo: megabytesSavedLabel.bottomAnchor, constant: 32),
+            logOutButton.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            logOutButton.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.5),
+            logOutButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
