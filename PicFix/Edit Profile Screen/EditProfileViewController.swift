@@ -67,11 +67,18 @@ class EditProfileViewController: UIViewController {
             notificationCenter.post(
                 name: Notification.Name("textFromSecondScreen"),
                 object: text)
-            navigationController?.popViewController(animated: true)
+            showProfileChangeSavedAlert()
+         //   navigationController?.popViewController(animated: true)
         }else{
             //Alert invalid input...
         }
         
+    }
+    
+    func showProfileChangeSavedAlert(){
+        let alert = UIAlertController(title: "Success", message: "The profile has been saved!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true)
     }
     
 
